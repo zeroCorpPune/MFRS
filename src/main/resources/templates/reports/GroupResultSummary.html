@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang=en xmlns:th=http://www.thymeleaf.org>
+<head>
+
+    <STYLE>
+         @media print {
+            .page-break {
+                page-break-before: always;
+            }
+        }
+        div.applicant-break {page-break-after:always;}
+        BR.page { page-break-after: always }
+    .border-ALL {
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: solid 1px black !important;
+        border-bottom: solid 1px black !important;
+    }
+	.RepfontStyle2
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:8pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle1
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7.0pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle3
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7.0pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.RepHeaderAnnex
+	{
+		border-width:0;
+		border-style:none;
+		/*background-color:#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#330099;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeaderComp
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: solid 1px black !important;
+        border-bottom: none;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+    .RepHeaderCompNext0
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+    .RepHeaderCompNext1
+	{
+        border-width:1;
+        border-right: none;
+        border-left: solid 1px black !important;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+    .RepHeaderCompNext2
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: none;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.RepHeader3
+	{
+		border-width:0;
+		border-style:none;
+		/*background-color:#EEF7F9;*/
+		font-size:5pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader5
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#EEF7F9;
+		font-size:7pt;
+		font-family:Verdana;
+		font-weight:Bold;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader4
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#EEF7F9;
+		font-size:6pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader
+	{
+		border-width:0;
+		border-style:none;
+		background-color:white; /*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.SubRepHeader
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#BDDDE8;
+		font-size:8pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.cellStyle1
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		font-weight: bold;
+	}
+
+	.negative-value::before {
+    content: "(";
+	}
+	.negative-value::after {
+	    content: ")";
+	}
+	.negative-value {
+	    color: black; /* Optional: Makes negative numbers red */
+	}
+</STYLE>
+    
+
+    <body>
+        <form name="form" >
+            <Center>
+
+            
+           
+				<table border="1" cellpadding="1" cellspacing="0" width="50%">
+					<thead>
+						<tr>
+							<th>Description Code</th>
+							<th>MTD</th>
+							<th>MBDG</th>
+							<th colspan="2">VAR1</th>
+							<th>VARP</th>
+							<th>LY</th>
+							<th colspan="2">VAR</th>
+							<th>VARLY</th>
+						</tr>
+					</thead>
+					<!--
+					<tbody>
+						<tr th:each="entry : ${P1S1desccdValues}">
+							<td th:text="${entry.value['MTD']}"></td>
+							<td th:text="${entry.value['MTD'] != null ? entry.value['MTD'].formattedValue : 'N/A'}"></td>
+							<td th:text="${entry.key}"></td>
+							<td th:text="${entry.value['MTD'].formattedValue}"></td>
+							<td th:text="${entry.value['MBDG'].formattedValue}"></td>
+							<td th:text="${entry.value['VAR1'].formattedValue}"></td>
+							<td th:text="${entry.value['VARP'].formattedValue}"></td>
+							<td th:text="${entry.value['LY'].formattedValue}"></td>
+							<td th:text="${entry.value['VAR'].formattedValue}"></td>
+							<td th:text="${entry.value['VARLY'].formattedValue}"></td>
+							
+						</tr>
+					</tbody>
+					-->
+					<tbody>
+						
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['A5']}" />
+							<!--<td th:text="${P1S1desccdValues['A5']['DESCCD']}">0</td>-->
+							
+							<td th:text="${P1S1desccdValues['A5']['MTD'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['A5']['MBDG'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['A5']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['A5']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['A5']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>							
+							<td th:text="${P1S1desccdValues['A5']['VAR1'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['A5']['VARP'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['A5']['LY'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['A5']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['A5']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['A5']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>	
+							<td th:text="${P1S1desccdValues['A5']['VAR'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['A5']['VARLY'].formattedValue +'%'}" align="right"/>
+						</tr>	
+						
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['D5']}" />
+							<td th:text="${P1S1desccdValues['D5']['MTD'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['D5']['MBDG'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['D5']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['D5']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['D5']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>							
+							<td th:text="${P1S1desccdValues['D5']['VAR1'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['D5']['VARP'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['D5']['LY'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['D5']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['D5']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['D5']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['D5']['VAR'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['D5']['VARLY'].formattedValue +'%'}" align="right"/>
+						</tr>
+						
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['E6']}" />
+							<td th:text="${P1S1desccdValues['E6']['MTD'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['E6']['MBDG'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['E6']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['E6']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['E6']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>							
+							<td th:text="${P1S1desccdValues['E6']['VAR1'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['E6']['VARP'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['E6']['LY'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['E6']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['E6']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['E6']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>	
+							<td th:text="${P1S1desccdValues['E6']['VAR'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['E6']['VARLY'].formattedValue +'%'}" align="right"/>
+						</tr>
+					
+						<tr>
+							<td><b>Total Revenue</b></td>
+							<td align="right"><strong th:text="${P1S1desccdValues['CALC1']['MTD'].formattedValue}"></strong></td>
+							<td align="right"><strong th:text="${P1S1desccdValues['CALC1']['MBDG'].formattedValue}"></strong></td>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['CALC1']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC1']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC1']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td align="right"><strong th:text="${P1S1desccdValues['CALC1']['VAR1'].formattedValue}"></strong></td>
+							<td align="right"><strong th:text="${P1S1desccdValues['CALC1']['VARP'].formattedValue}"></strong></td>
+							<td align="right"><strong th:text="${P1S1desccdValues['CALC1']['LY'].formattedValue}"></strong></td>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['CALC1']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC1']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC1']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td align="right"><strong th:text="${P1S1desccdValues['CALC1']['VAR'].formattedValue}"></strong></td>
+							<td align="right"><strong th:text="${P1S1desccdValues['CALC1']['VARLY'].formattedValue}"></strong></td>
+							</strong>
+					
+						</tr>
+
+
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['R5']}" />
+							<td th:text="${P1S1desccdValues['R5']['MTD'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['R5']['MBDG'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['R5']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['R5']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['R5']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>							
+							<td th:text="${P1S1desccdValues['R5']['VAR1'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['R5']['VARP'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['R5']['LY'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['R5']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['R5']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['R5']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>	
+							<td th:text="${P1S1desccdValues['R5']['VAR'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['R5']['VARLY'].formattedValue +'%'}" align="right"/>
+						</tr>
+
+
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['CALC2']}" />
+							<td th:text="${P1S1desccdValues['CALC2']['MTD'].formattedValue + '%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['CALC2']['MBDG'].formattedValue + '%'}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['CALC2']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC2']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC2']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>							
+							<td th:text="${P1S1desccdValues['CALC2']['VAR1'].formattedValue + '%'}" align="right"/>
+							<td>&nbsp;</td>
+							<td th:text="${P1S1desccdValues['CALC2']['LY'].formattedValue + '%'}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['CALC2']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC2']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC2']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>	
+							<td th:text="${P1S1desccdValues['CALC2']['VAR'].formattedValue + '%'}" align="right"/>
+							<td>&nbsp;</td>
+
+						</tr>
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['E5']}" />
+							<td th:text="${P1S1desccdValues['E5']['MTD'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['E5']['MBDG'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['E5']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['E5']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['E5']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['E5']['VAR1'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['E5']['VARP'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['E5']['LY'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['E5']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['E5']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['E5']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['E5']['VAR'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['E5']['VARLY'].formattedValue +'%'}" align="right"/>
+						</tr>
+
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['K5']}" />
+							<td th:text="${P1S1desccdValues['K5']['MTD'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['K5']['MBDG'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['K5']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['K5']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['K5']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['K5']['VAR1'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['K5']['VARP'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['K5']['LY'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['K5']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['K5']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['K5']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['K5']['VAR'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['K5']['VARLY'].formattedValue +'%'}" align="right"/>
+						</tr>
+
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['CALC3']}" />
+							<td th:text="${P1S1desccdValues['CALC3']['MTD'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['CALC3']['MBDG'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['CALC3']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC3']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC3']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['CALC3']['VAR1'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['CALC3']['VARP'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['CALC3']['LY'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['CALC3']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC3']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC3']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['CALC3']['VAR'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['CALC3']['VARLY'].formattedValue +'%'}" align="right"/>
+							
+							
+						</tr>
+
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['CALC4']}" />
+							<td th:text="${P1S1desccdValues['CALC4']['MTD'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['CALC4']['MBDG'].formattedValue +'%'}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['CALC4']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC4']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC4']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['CALC4']['VAR1'].formattedValue +'%'}" align="right"/>
+							<td>&nbsp;</td>
+							<td th:text="${P1S1desccdValues['CALC4']['LY'].formattedValue +'%'}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['CALC4']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC4']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['CALC4']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['CALC4']['VAR'].formattedValue +'%'}" align="right"/>
+							<td>&nbsp;</td>
+
+
+						</tr>
+
+						<tr>
+							<td th:text="${P1S1desccdDescriptions['M5']}" />
+							<td th:text="${P1S1desccdValues['M5']['MTD'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['M5']['MBDG'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['M5']['VAR1'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['M5']['VAR1'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['M5']['VAR1'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['M5']['VAR1'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['M5']['VARP'].formattedValue +'%'}" align="right"/>
+							<td th:text="${P1S1desccdValues['M5']['LY'].formattedValue}" align="right"/>
+							<td align="right">
+								<span th:if="${P1S1desccdValues['M5']['VAR'].getValue() < 0}">
+									<img th:src="@{/images/down.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['M5']['VAR'].getValue() == 0}">
+									<img th:src="@{/images/zero.png}"  />
+								</span>
+								<span th:if="${P1S1desccdValues['M5']['VAR'].getValue() > 0}">
+									<img th:src="@{/images/up.png}"  />
+								</span>
+							</td>
+							<td th:text="${P1S1desccdValues['M5']['VAR'].formattedValue}" align="right"/>
+							<td th:text="${P1S1desccdValues['M5']['VARLY'].formattedValue +'%'}" align="right"/>
+						</tr>
+
+					</tbody>
+				</table>
+				
+            </Center>
+        </form>
+    </body>    
+</html>

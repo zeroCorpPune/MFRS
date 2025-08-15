@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+   <!-- footer -->
+   <menu>
+      <nav>
+         <div class="sidebar_blog_1">
+            <div class="sidebar-header">
+               <div class="logo_section">
+                  <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png"
+                        alt="#" /></a>
+               </div>
+            </div>
+         </div>
+         <div class="sidebar_blog_2">
+            <h4>Menu</h4>
+            
+            <div th:if="${menu == 'Flash'}">
+               <ul class="list-unstyled components">
+                  <li><a href="#"><i class="fa fa-bolt orange_color"></i> <span>Flash</span></a></li>
+               </ul>
+            </div>
+            
+            <div th:if="${menu == 'Company'}">
+               <ul class="list-unstyled components">
+                  <li><a href="#"><i class="fa fa-building white_color"></i> <span>Company Master</span></a></li>
+               </ul>
+            </div>
+            
+            <div th:if="${menu == 'SAF'}">
+               <ul class="list-unstyled components">
+                  <li><a href="#"><i class="fa fa-diamond purple_color"></i> <span>SAF</span></a></li>
+               </ul>
+            </div>
+            
+            <div th:if="${menu == ''}">
+               <ul class="list-unstyled components">
+                  <li><a href="home"><i class="fa fa-file-text yellow_color"></i> <span>Notice Board</span></a></li>
+                  <li><a href="companylist"><i class="fa fa-building white_color"></i> <span>Company Master</span></a></li>
+                  <li><a href="mistxnmenu"><i class="fa fa-bolt orange_color"></i> <span>Flash</span></a></li>
+                  <li><a href="safmenu"><i class="fa fa-diamond purple_color"></i> <span>SAF</span></a></li>
+                  <li><a href="#"><i class="fa fa-road blue2_color"></i> <span>Receivable / Payable</span></a></li>
+                  <li><a href="#"><i class="fa fa-map-signs green_color"></i> <span>Financial Position</span></a></li>
+                  <li><a href="#"><i class="fa fa-ship red_color"></i> <span>Trade Receivable</span></a></li>
+                  <li><a href="#"><i class="fa fa-university yellow_color"></i> <span>Bank Borrowings</span></a></li>
+                  <li><a href="#"><i class="fa fa-money-bill-wave purple_color2"></i> <span>Working Capital</span></a></li>
+                  <li><a href="#"><i class="fa fa-briefcase blue1_color"></i> <span>Budget</span></a></li>
+                  <li><a href="#"><i class="fa fa-clone yellow_color"></i> <span>Budget Distribution</span></a></li>
+                  <li><a href="reports"><i class="fa fa-bar-chart green_color"></i> <span>Reports</span></a></li>
+               </ul>
+            </div>
+         
+         </div>
+      </nav>
+   </menu>
+</body>
+
+</html>

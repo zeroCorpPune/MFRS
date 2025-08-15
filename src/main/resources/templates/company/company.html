@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <menu th:replace="fragments/menu :: menu"></menu>
+            </nav>
+            <!-- Include the menu -->
+
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <img class="img-responsive" src="images/logo/logo.png" alt="#" />
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user"
+                                                    th:text="${theuserid}"></span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+
+                <!-- dashboard inner -->
+
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>Edit Compnay Data </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The content Start  But Change Heading-->
+
+                        <div class="row column4 graph">
+                            <div class="container-fluid">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        <div class="task_list_main">
+
+                                            <form action="#" th:action="@{'/editcompany'}" th:object="${company}"   method="post">
+                                                <div>
+                                                  <table border="1" >
+                                                    <tr>
+                                                        <td width="150">
+                                                           Company Code
+                                                        </td>
+   
+                                                        <td  width="450">
+                                                        <input id="ccompcode" size="25" th:field="*{ccompcode}" name="ccompcode" type="text" class="form-control" placeholder="enter company code" readonly/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Company Name
+                                                        </td>
+   
+                                                        <td>
+                                                            <input id="ccompname" size="25" th:field="*{ccompname}" name="ccompname" type="text" class="form-control" placeholder="enter company name" />
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td >
+                                                           Email ID
+                                                        </td>
+   
+                                                        <td  >
+                                                        <input type="email"  th:field="*{CEMAIL}" name="CEMAIL"  class="form-control"  multiple />
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td width="150">
+                                                           Budget Email ID
+                                                        </td>
+   
+                                                        <td  width="450">
+                                                        <input type="email"  size="25" th:field="*{BUDGET_CEMAIL}" name="BUDGET_CEMAIL"  class="form-control" placeholder="enter email" />
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <p th:if="${#fields.hasErrors('ccompname')}" th:errors="*{ccompname}" class="alert alert-danger" role="alert">
+                                                                title Error</p>
+                                                        </td>
+                                                        <input type="hidden" th:field="*{CATEGORY}" name="CATEGORY" />
+                                                        
+                                                        
+                                                        <input type="hidden" th:field="*{CDEFAULT}" name="CDEFAULT" />
+                                                        <input type="hidden" th:field="*{CCONTACTPERSON}" name="CCONTACTPERSON" />
+                                                        <input type="hidden" th:field="*{CADDRESS1}" name="CADDRESS1" />
+                                                        <input type="hidden" th:field="*{CADDRESS2}" name="CADDRESS2" />
+                                                        <input type="hidden" th:field="*{CADDRESS3}" name="CADDRESS3" />
+                                                        <input type="hidden" th:field="*{CADDRESS4}" name="CADDRESS4" />
+                                                        <input type="hidden" th:field="*{CADDRESS5}" name="CADDRESS5" />
+                                                        
+                                                        <input type="hidden" th:field="*{CPHONE}" name="CPHONE" />
+                                                        <input type="hidden" th:field="*{CFAX}" name="CFAX" />
+                                                        <input type="hidden" th:field="*{CUSER_ID}" name="CUSER_ID" />
+                                                        <input type="hidden" th:field="*{CUSER_NAME}" name="CUSER_NAME" />
+                                                        <input type="hidden" th:field="*{CUSER_TYPE}" name="CUSER_TYPE" />
+                                                        <input type="hidden" th:field="*{PASSWORD}" name="PASSWORD" />
+                                                        <input type="hidden" th:field="*{CACTIVE}" name="CACTIVE" />
+                                                        
+                                                        <input type="hidden" th:field="*{DCREATIONDATE}" name="DCREATIONDATE" />
+                                                        <input type="hidden" th:field="*{DMODIFIEDDATE}" name="DMODIFIEDDATE" />
+                                                        
+                                                        <input type="hidden" th:field="*{CCOMPNAMESN}" name="CCOMPNAMESN" />
+                                                        <input type="hidden" th:field="*{CCOMPNAMESN1}" name="CCOMPNAMESN1" />
+                                                        <input type="hidden" th:field="*{SAFYN}" name="SAFYN" />
+                                                        <input type="hidden" th:field="*{RECPAYYN}" name="RECPAYYN" />
+                                                        <input type="hidden" th:field="*{FINPOSYN}" name="FINPOSYN" />
+                                                        <input type="hidden" th:field="*{STAKE}" name="STAKE" />
+                                                        
+                                                        <input type="hidden" th:field="*{TRADERECYN}" name="TRADERECYN" />
+                                                        <input type="hidden" th:field="*{BANKBORROWINGSYN}" name="BANKBORROWINGSYN" />
+                                                        <input type="hidden" th:field="*{CCOMPCODE_OLD}" name="CCOMPCODE_OLD" />
+                                                        <input type="hidden" th:field="*{CCOMPCODE_NEW}" name="CCOMPCODE_NEW" />
+                                                        
+                                                        <input type="hidden" th:field="*{WCYN}" name="WCYN" />
+                                                        <input type="hidden" th:field="*{SECTORNO}" name="SECTORNO" />
+                                                        <input type="hidden" th:field="*{MISYN}" name="MISYN" />
+                                                        <input type="hidden" th:field="*{MFRSYN}" name="MFRSYN" />
+                                                        <input type="hidden" th:field="*{CCOMPNAMESN2}" name="CCOMPNAMESN2" />
+                                                        
+                                                        <input type="hidden" th:field="*{UPLOADFLASHFROMEXCEL}" name="UPLOADFLASHFROMEXCEL" />
+                                                        <input type="hidden" th:field="*{INCLUDEINFLASHREPORT}" name="INCLUDEINFLASHREPORT" />
+                                                        <input type="hidden" th:field="*{INCLUDEINBBREPORT}" name="INCLUDEINBBREPORT" />
+                                                        <input type="hidden" th:field="*{SECTIONINBBREPORT}" name="SECTIONINBBREPORT" />
+                                                        <input type="hidden" th:field="*{FLEXI_CCOMPCODE}" name="FLEXI_CCOMPCODE" />
+                                                        <input type="hidden" th:field="*{COMREGNO}" name="COMREGNO" />
+                                                        
+                                                    </tr>
+                                                  
+                                                  
+                                                </table>
+                                                </div>
+                                                <!--
+                                                <table border="1">
+                                                  <tr>
+                                                <td th:text="${companycode}" />
+                                              </tr>
+                                                </table>
+                                                -->
+                                                <div>
+                                                  <!--
+                                                  <select id="useflash" name="useflash" th:field="*{useflash}" class="form-control">
+                                                    <option value="Y">Yes</option>
+                                                    <option value="N">No</option>
+                                                  </select>
+                                                  <p th:if="${#fields.hasErrors('useflash')}" th:errors="*{useflash}" class="alert alert-danger" role="alert">
+                                                    Select
+                                                    rights for flash</p>
+                                                </div>
+                                                -->
+
+                                                <button type="submit"  class="btn btn-primary">
+                                                  Save
+                                                </button>
+                                                &nbsp;&nbsp;
+                                                <Input Type="button" Name=cmdCancel Value='Cancel' class="btn cur-p btn-danger"  onclick="cancel(form)" >
+                                        
+                                                </div>
+                                                <script>
+                                                function cancel(form)
+                                                {
+                                                    form.action="companylist";
+                                                    form.method="GET";
+                                                    form.submit();
+                                                }
+                                                </script>
+                                              </form>
+                                            
+                                            
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- The content End -->
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <footer th:replace="fragments/footer :: footer"></footer>
+                        </div>
+                    </div>
+                    <!-- end dashboard inner -->
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+
+        <!-- Include the footer 
+        <div th:replace="fragments/footer :: foot"></div>
+        -->
+    </div>
+    </div>
+</body>
+
+</html>

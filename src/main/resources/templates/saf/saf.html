@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <menu th:replace="fragments/menu :: menu"></menu>
+            </nav>
+            <!-- Include the menu -->
+
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <img class="img-responsive" src="images/logo/logo.png" alt="#" />
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user"
+                                                    th:text="${theuserid}"></span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+
+                <!-- dashboard inner -->
+
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>SAF Data Entry </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The content Start  But Change Heading-->
+
+                        <div class="row column4 graph">
+                            <div class="container-fluid">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        <div class="task_list_main">
+                                            <!--
+                                            <form th:object="${saftxns}" th:action="@{/update-saftxn}" method="post">
+                                                <table Border="1" Width="100%">
+                                                    <tbody >
+                                                        <tr >
+                                                            <td align="center">
+                                                                <input type="text" class="form-control" th:field="*{net_profit_loss}" name="net_profit_loss" />
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                
+                                            </form>
+                                            -->
+                                            <form th:object="${saftxns}" th:action="@{/update-saftxn}" method="post">
+                                            <Table class="fontStyle1" Border=1 Cellspacing=3 Cellpadding=2 Width='100%'>
+                                            <Tr>
+                                                <td align="center" >
+                                                <strong><b>Sources and Applications of Funds upto:&nbsp;
+                                                    <span th:text="${monthName}"></span>-
+                                                    <span  th:text="${cyear}"></span>
+                                                </b></strong>
+                                                </Td>
+                                            </Tr>
+
+
+                                            
+                                            <tr>
+                                                <td align="center">
+                                                    <Table Border=1  Width='100%'>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center" colspan="3">
+                                                                <u>SOURCES</u>
+                                                                </td>
+                                                                <td align="center" colspan="3">
+                                                                <u>APPLICATIONS</u>
+                                                                </td>
+                                                            </tr>		
+                                                            <tr>
+                                                                <td colspan="3" align="right" >
+                                                                (RO in '000s)&nbsp;
+                                                                </td>
+                                                                
+                                                                <td colspan="3" align="right" >
+                                                                (RO in '000s)&nbsp;
+                                                                </td>
+                                                            </tr>		
+                                           
+                                                            <tr>
+                                                                <td Align=Left colspan="3">
+                                                                    <strong><u>CASH PROFIT</u></strong>
+                                                                </td>
+                                                                    <td Align=Left colspan="3">
+                                                                        <strong><u>CASH LOSS</u></strong>
+                                                                </td>
+                                                            </tr>		
+                                                           
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].net_profit_loss_crd}"></span></td>
+                                                                <td align="center">
+                                                                    <Input style="text-align:right;" type="text" id="net_profit_loss" name="net_profit_loss" th:value="${net_profit_loss != null ? net_profit_loss : 0.0}"  th:field="*{net_profit_loss}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].net_loss_profit}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="net_loss_profit" name="net_loss_profit" th:field="*{net_loss_profit}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                                            
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].add_depreciation}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="add_depreciation" name="add_depreciation" th:field="*{add_depreciation}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].less_depreciation}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="less_depreciation" name="less_depreciation" th:field="*{less_depreciation}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                           
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].add_amortisation}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="add_amortisation" name="add_amortisation" th:field="*{add_amortisation}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].less_amortisation}"></span></td>
+                                                                <td align="center" >
+                                                                    <Input style="text-align:right;" type="text" id="less_amortisation" name="less_amortisation" th:field="*{less_amortisation}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                            
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].add_prov_for_impairment}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="add_prov_for_impairment" name="add_prov_for_impairment" th:field="*{add_prov_for_impairment}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].less_prov_for_impairment}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="less_prov_for_impairment" name="less_prov_for_impairment" th:field="*{less_prov_for_impairment}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].less_profit_on_si}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="less_profit_on_si" name="less_profit_on_si" th:field="*{less_profit_on_si}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].add_profit_on_si}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="add_profit_on_si" name="add_profit_on_si" th:field="*{add_profit_on_si}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].less_profit_on_sfa}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="less_profit_on_sfa" name="less_profit_on_sfa" th:field="*{less_profit_on_sfa}">
+                                                                </td>
+                                                                <td align="right"><span  th:text="${net_profit_loss != null ? net_profit_loss : 0.0} + ${add_depreciation != null ? add_depreciation : 0.0} + ${add_amortisation != null ? add_amortisation : 0.0} + ${add_prov_for_impairment != null ? add_prov_for_impairment : 0.0} - (${less_profit_on_si != null ? less_profit_on_si : 0.0} + ${less_profit_on_sfa != null ? less_profit_on_sfa : 0.0})"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                <!--
+                                                                <td align="right"><span  th:text="${net_profit_loss} + ${add_depreciation} + ${add_amortisation} + ${add_prov_for_impairment} - (${less_profit_on_si} + ${less_profit_on_sfa})"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                -->
+                                                                <td ><span  th:text="${safcards[0].add_profit_on_sfa}"></span></td>
+                                                                <td align="center" >
+                                                                
+                                                                <Input style="text-align:right;" type="text" id="add_profit_on_sfa" name="add_profit_on_sfa" th:field="*{add_profit_on_sfa}" class="form-control" >
+                                                                </td>
+                                                                <!--
+                                                                <td align="right"><span  th:text="${net_loss_profit} + ${less_depreciation} + ${less_amortisation} + ${less_prov_for_impairment} - (${add_profit_on_si} + ${add_profit_on_sfa})"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                -->
+                                                                <td align="right"><span  th:text="${net_loss_profit != null ? net_loss_profit : 0.0} + ${less_depreciation != null ? less_depreciation : 0.0} + ${less_amortisation != null ? less_amortisation : 0.0} + ${less_prov_for_impairment != null ? less_prov_for_impairment : 0.0} - (${less_prov_for_impairment != null ? less_prov_for_impairment : 0.0} + ${add_profit_on_sfa != null ? add_profit_on_sfa : 0.0})"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                            </tr>		
+
+                                                            <tr>
+                                                                <td Align=Left colspan="3">
+                                                                <u><strong>DECREASE IN W. CAPITAL</u></strong>
+                                                                </td>
+                                                                <td Align=Left  colspan="3">
+                                                                    <strong><u>INCREASE IN W. CAPITAL</u></strong>
+                                                                </td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].inventory_decr}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="inventory_decr" name="inventory_decr" th:field="*{inventory_decr}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].inventory_incr}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="inventory_incr" name="inventory_incr" th:field="*{inventory_incr}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].receivable_decr}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="receivable_decr" name="receivable_decr" th:field="*{receivable_decr}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].receivable_incr}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="receivable_incr" name="receivable_incr" th:field="*{receivable_incr}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].other_ca_decr}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="other_ca_decr" name="other_ca_decr" th:field="*{other_ca_decr}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].other_ca_incr}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="other_ca_incr" name="other_ca_incr" th:field="*{other_ca_incr}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].other_cr_incr}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="other_cr_incr" name="other_cr_incr" th:field="*{other_cr_incr}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].other_cr_decr}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="other_cr_decr" name="other_cr_decr" th:field="*{other_cr_decr}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].other_cl_incr}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="other_cl_incr" name="other_cl_incr" th:field="*{other_cl_incr}">
+                                                                </td>
+                                                                <!--
+                                                                <td align="right"><span  th:text="${other_cl_incr}+${other_cr_incr}+${other_ca_decr}+${receivable_decr}+${inventory_decr}"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                -->
+                                                                <td align="right"><span  th:text="${other_cl_incr != null ? other_cl_incr : 0.0}+${other_cr_incr != null ? other_cr_incr : 0.0}+${other_ca_decr != null ? other_ca_decr : 0.0}+${receivable_decr != null ? receivable_decr : 0.0}+${inventory_decr != null ? inventory_decr : 0.0}"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].other_cl_decr}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="other_cl_decr" name="other_cl_decr" th:field="*{other_cl_decr}" class="form-control" >
+                                                                </td>
+                                                                <!--
+                                                                <td align="right"><span  th:text="${other_cl_decr}+${other_cr_decr}+${other_ca_incr}+${receivable_incr}+${inventory_incr}"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                -->
+                                                                <td align="right"><span  th:text="${other_cl_decr != null ? other_cl_decr : 0.0}+${other_cr_decr != null ? other_cr_decr : 0.0}+${other_ca_incr != null ? other_ca_incr : 0.0}+${receivable_incr != null ? receivable_incr : 0.0}+${inventory_incr != null ? inventory_incr : 0.0}"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                            </tr>		
+                                        
+                                                            <tr>
+                                                                <td Align=Left colspan="3">
+                                                                    <strong><u>INCR. IN BORROWINGS</u></strong>
+                                                                </td>
+                                                                <td Align=Left colspan="3">
+                                                                <strong><u>DECR. IN BORROWINGS</u></strong>
+                                                                </td>
+                                                            </tr>		
+
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].recpt_of_term_loan}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="recpt_of_term_loan" name="recpt_of_term_loan" th:field="*{recpt_of_term_loan}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].repymt_of_term_loan}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="repymt_of_term_loan" name="repymt_of_term_loan" th:field="*{repymt_of_term_loan}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].incr_in_od_ltr_bd}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="incr_in_od_ltr_bd" name="incr_in_od_ltr_bd" th:field="*{incr_in_od_ltr_bd}">
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].decr_in_od_ltr_bd}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="decr_in_od_ltr_bd" name="decr_in_od_ltr_bd" th:field="*{decr_in_od_ltr_bd}" class="form-control" >
+                                                                </td>
+                                                                <td>&nbsp;</td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].decr_in_cash_bank}"></span></td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="decr_in_cash_bank" name="decr_in_cash_bank" th:field="*{decr_in_cash_bank}">
+                                                                </td>
+                                                                <!--
+                                                                <td align="right"><span  th:text="${decr_in_cash_bank}+${incr_in_od_ltr_bd}+${recpt_of_term_loan}"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                -->
+                                                                <td align="right"><span  th:text="${decr_in_cash_bank != null ? decr_in_cash_bank : 0.0}+${incr_in_od_ltr_bd != null ? incr_in_od_ltr_bd : 0.0}+${recpt_of_term_loan != null ? recpt_of_term_loan : 0.0}"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                <td ><span  th:text="${safcards[0].incr_in_cash_bank}"></span></td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="incr_in_cash_bank" name="incr_in_cash_bank" th:field="*{incr_in_cash_bank}" class="form-control" >
+                                                                </td>
+                                                                <!--
+                                                                <td align="right"><span  th:text="${incr_in_cash_bank}+${decr_in_od_ltr_bd}+${repymt_of_term_loan}"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                                -->
+                                                                <td align="right"><span  th:text="${incr_in_cash_bank != null ? incr_in_cash_bank : 0.0}+${decr_in_od_ltr_bd != null ? decr_in_od_ltr_bd : 0.0}+${repymt_of_term_loan != null ? repymt_of_term_loan : 0.0}"></span>&nbsp;&nbsp;&nbsp;</td>
+                                                            </tr>		
+                                        
+                                                            <tr>
+                                                                <td align="center" colspan="6">
+                                                                &nbsp;
+                                                                </td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].loan_fm_ogcs}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="loan_fm_ogcs" name="loan_fm_ogcs" th:field="*{loan_fm_ogcs}">
+                                                                </td>
+                                                                <td ><span  th:text="${safcards[0].loan_to_ogcs}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="loan_to_ogcs" name="loan_to_ogcs" th:field="*{loan_to_ogcs}" class="form-control" >
+                                                                </td>
+                                                            </tr>		
+                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].loan_fm_othr}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="loan_fm_othr" name="loan_fm_othr" th:field="*{loan_fm_othr}">
+                                                                </td>
+                                                                <td ><span  th:text="${safcards[0].loan_to_othr}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="loan_to_othr" name="loan_to_othr" th:field="*{loan_to_othr}" class="form-control" >
+                                                                </td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].sale_proceeds_of_fa}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="sale_proceeds_of_fa" name="sale_proceeds_of_fa" th:field="*{sale_proceeds_of_fa}">
+                                                                </td>
+                                                                <td ><span  th:text="${safcards[0].addn_to_fa}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="addn_to_fa" name="addn_to_fa" th:field="*{addn_to_fa}" class="form-control" >
+                                                                </td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].sale_proceeds_of_invst}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="sale_proceeds_of_invst" name="sale_proceeds_of_invst" th:field="*{sale_proceeds_of_invst}">
+                                                                </td>
+                                                                <td ><span  th:text="${safcards[0].purchase_of_invst}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="purchase_of_invst" name="purchase_of_invst" th:field="*{purchase_of_invst}" class="form-control" >
+                                                                </td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].capital_contribution}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="capital_contribution" name="capital_contribution" th:field="*{capital_contribution}">
+                                                                </td>
+                                                                <td ><span  th:text="${safcards[0].divnd_paid}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="divnd_paid" name="divnd_paid" th:field="*{divnd_paid}" class="form-control" >
+                                                                </td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td ><span  th:text="${safcards[0].proprietor_contribution}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center">
+                                                                    <input style="text-align:right;" type="text" class="form-control" id="proprietor_contribution" name="proprietor_contribution" th:field="*{proprietor_contribution}">
+                                                                </td>
+                                                                <td ><span  th:text="${safcards[0].proprietor_withdrawal}"></span></td>
+                                                                <td>&nbsp;</td>
+                                                                <td align="center" >
+                                                                <Input style="text-align:right;" type="text" id="proprietor_withdrawal" name="proprietor_withdrawal" th:field="*{proprietor_withdrawal}" class="form-control" >
+                                                                </td>
+                                                                </tr>		
+                                                                <tr>
+                                                                <td align="center" 0>
+                                                                &nbsp;
+                                                                </td>
+                                                            </tr>		
+                                                        
+                                                            <tr>
+                                                                <td Align=Right ><Font><B>
+                                                                    <strong>TOTAL</strong>
+                                                                </B></Font>
+                                                                </td>
+                                                        
+                                                                <td align="center" >
+                                                                &nbsp;
+                                                                </td>
+                                                                <td align="right" >
+                                                                    <strong><Font><B>
+                                                                    <!--
+                                                                    <span  th:text="(${net_profit_loss} + ${add_depreciation} + ${add_amortisation} + ${add_prov_for_impairment} - (${less_profit_on_si} + ${less_profit_on_sfa}))+${other_cl_incr}+${other_cr_incr}+${other_ca_decr}+${receivable_decr}+${inventory_decr}+${decr_in_cash_bank}+${incr_in_od_ltr_bd}+${recpt_of_term_loan}+${loan_fm_ogcs}+${loan_fm_othr}+${sale_proceeds_of_fa}+${sale_proceeds_of_invst}+${capital_contribution}+${proprietor_contribution}"></span>&nbsp;&nbsp;&nbsp;
+                                                                    -->
+                                                                    <span  th:text="(${net_profit_loss != null ? net_profit_loss : 0.0} + ${add_depreciation != null ? add_depreciation : 0.0} + ${add_amortisation != null ? add_amortisation : 0.0} + ${add_prov_for_impairment != null ? add_prov_for_impairment : 0.0} - (${less_profit_on_si != null ? less_profit_on_si : 0.0} + ${less_profit_on_sfa != null ? less_profit_on_sfa : 0.0}))+${other_cl_incr != null ? other_cl_incr : 0.0}+${other_cr_incr != null ? other_cr_incr : 0.0}+${other_ca_decr != null ? other_ca_decr : 0.0}+${receivable_decr != null ? receivable_decr : 0.0}+${inventory_decr != null ? inventory_decr : 0.0}+${decr_in_cash_bank != null ? decr_in_cash_bank : 0.0}+${incr_in_od_ltr_bd != null ? incr_in_od_ltr_bd : 0.0}+${recpt_of_term_loan != null ? recpt_of_term_loan : 0.0}+${loan_fm_ogcs != null ? loan_fm_ogcs : 0.0}+${loan_fm_othr != null ? loan_fm_othr : 0.0}+${sale_proceeds_of_fa != null ? sale_proceeds_of_fa : 0.0}+${sale_proceeds_of_invst != null ? sale_proceeds_of_invst : 0.0}+${capital_contribution != null ? capital_contribution : 0.0}+${proprietor_contribution != null ? proprietor_contribution : 0.0}"></span>&nbsp;&nbsp;&nbsp;
+                                                                    </strong> </B></Font>
+                                                                </td>
+                                                        
+                                                                <td Align=rIGHT ><Font><B><strong>TOTAL</strong>
+                                                                </B></Font>
+                                                                </td>
+                                                        
+                                                                <td align="center" >
+                                                                &nbsp;
+                                                                </td>
+                                                                <td align="right" ><Font><B>
+                                                                    <strong>
+                                                                    <!--
+                                                                        <span  th:text="(${net_loss_profit} + ${less_depreciation} + ${less_amortisation} + ${less_prov_for_impairment} - (${add_profit_on_si} + ${add_profit_on_sfa}))+${other_cl_decr}+${other_cr_decr}+${other_ca_incr}+${receivable_incr}+${inventory_incr}+${incr_in_cash_bank}+${decr_in_od_ltr_bd}+${repymt_of_term_loan}+${loan_to_ogcs}+${loan_to_othr}+${addn_to_fa}+${purchase_of_invst}+${divnd_paid}+${proprietor_withdrawal}"></span>&nbsp;&nbsp;&nbsp;
+                                                                    -->
+                                                                    <span  th:text="(${net_loss_profit != null ? net_loss_profit : 0.0} + ${less_depreciation != null ? less_depreciation : 0.0} + ${less_amortisation != null ? less_amortisation : 0.0} + ${less_prov_for_impairment != null ? less_prov_for_impairment : 0.0} - (${add_profit_on_si != null ? add_profit_on_si : 0.0} + ${add_profit_on_sfa != null ? add_profit_on_sfa : 0.0}))+${other_cl_decr != null ? other_cl_decr : 0.0}+${other_cr_decr != null ? other_cr_decr : 0.0}+${other_ca_incr != null ? other_ca_incr : 0.0}+${receivable_incr != null ? receivable_incr : 0.0}+${inventory_incr != null ? inventory_incr : 0.0}+${incr_in_cash_bank != null ? incr_in_cash_bank : 0.0}+${decr_in_od_ltr_bd != null ? decr_in_od_ltr_bd : 0.0}+${repymt_of_term_loan != null ? repymt_of_term_loan : 0.0}+${loan_to_ogcs != null ? loan_to_ogcs : 0.0}+${loan_to_othr != null ? loan_to_othr : 0.0}+${addn_to_fa != null ? addn_to_fa : 0.0}+${purchase_of_invst != null ? purchase_of_invst : 0.0}+${divnd_paid != null ? divnd_paid : 0.0}+${proprietor_withdrawal != null ? proprietor_withdrawal : 0.0}"></span>&nbsp;&nbsp;&nbsp;
+                                                                    </strong> </B></Font>
+                                                                </td>
+                                                            </tr>			
+
+                                                            <tr>
+                                                                <td  colspan="6">
+                                                                Comments (Max. 1000 characters)
+                                                                <textarea cols="205" rows="4" id="remarks" th:field="*{remarks}" name="remarks" ></textarea>
+                                                                <input type="hidden" th:field="*{ccompcode}" />
+                                                                <input type="hidden" th:field="*{cyear}" />
+                                                                <input type="hidden" th:field="*{cmonth}" />
+                                                                </Td>
+                                                            </Tr>                                                            
+                                                        </tbody>
+                                                    </Table>
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                <td Align="center">
+                                                    <Input Type="button" Name=cmdSave Value='Save' class="btn cur-p btn-primary"  onclick="validate(form)" >
+                                                        &nbsp;&nbsp;
+                                                    <Input Type="button" Name=cmdValidate Value='Validate' class="btn cur-p btn-success"  onclick="Recalc(form)" >
+                                                        &nbsp;&nbsp;
+                                                    <Input Type="button" Name=cmdCancel Value='Cancel' class="btn cur-p btn-danger"  onclick="cancel(form)" >
+                                                </td>
+                                            </tr>
+                                            </Table>
+                                            <script language="javascript">
+                                                function validate(form)
+                                                {
+                                                    form.submit();
+                                                }
+
+                                                function cancel(form)
+                                                {
+                                                    form.action="/safcancel";
+                                                    form.submit();
+                                                }
+                                                function Recalc(form)
+                                                {
+                                                    // yet to code3
+                                                }
+                                              </script>    
+                                        </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- The content End -->
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <footer th:replace="fragments/footer :: footer"></footer>
+                        </div>
+                    </div>
+                    <!-- end dashboard inner -->
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+
+        <!-- Include the footer 
+        <div th:replace="fragments/footer :: foot"></div>
+        -->
+    </div>
+    </div>
+</body>
+
+</html>

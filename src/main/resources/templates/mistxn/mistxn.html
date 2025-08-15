@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <menu th:replace="fragments/menu :: menu"></menu>
+            </nav>
+            <!-- Include the menu -->
+
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <img class="img-responsive" src="images/logo/logo.png" alt="#" />
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user"
+                                                    th:text="${theuserid}"></span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+
+                <!-- dashboard inner -->
+
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>Flash Entry</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The content Start  But Change Heading-->
+
+                        <div class="row column4 graph">
+                            <div class="container-fluid">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        
+                                        <div class="task_list_main">
+
+                                            <span class="name_user" th:text="${error}"></span>
+                                            <!--
+                                            
+                                            -->
+                                            <form name="form" th:action="@{/update-mistxn}" th:object="${mistxnListWrapper}" method="post">
+                                                <center>
+                                                <table border=0 >
+                                                    <thead>
+                                                        <tr>
+                                                            <Td Align="Center" COlspan=1>
+                                                            MTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            MTD<br>
+                                                            Budget<br>
+                                                            <span  th:text="${cur_year}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            MTD<br>
+                                                            Flash<br>
+                                                            <span  th:text="${cur_year}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            Description<br>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Flash<br>
+                                                            <span  th:text="${cur_year}"></span>
+                                                            </td>
+                                                    
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Budget<br>
+                                                            <span  th:text="${cur_year}"></span>
+                                                            </td>
+                                                            
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year}"></span>
+                                                            </td>
+                                                            
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year2}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year3}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year4}"></span>
+                                                            </td>
+                                                        </tr>	
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr th:each="mistxn, iter : ${mistxnListWrapper.mistxns}" >
+                                                            <!--
+                                                            <td><input id="ccompcode" name="ccompcode" type="text" class="form-control" th:value="${mistxns[__${iter.index}__].ccompcode}"></td>
+                                                            <td><input type="text" th:field="*{mistxns[__${iter.index}__].ccompcode}" /></td>
+                                                            
+                                                            -->
+                                                            
+                                                            
+                                                            <td><input size="10" style="text-align:right;" id="actMtdBalPy1" name="actMtdBalPy1" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].actMtdBalPy1}"></td>
+                                                            <td><input size="10" style="text-align:right;" id="bgtMtdBal" name="bgtMtdBal" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].bgtMtdBal}"></td>
+                                                            <td><input size="10" style="text-align:right;" id="actMtdBal" name="actMtdBal" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].actMtdBal}"></td>
+                                                            
+                                                            <!--
+                                                            <input size="30" readonly id="description" name="description" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].description}">
+                                                            -->
+                                                            
+                                                            <td><input size="25" style="text-align:left;" id="description" name="description" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].description}"></td>
+                                                            <td><input size="10" style="text-align:right;" id="actYtdBal" name="actYtdBal" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].actYtdBal}"></td>
+                                                            <td><input size="10" style="text-align:right;" id="bgtYtdBal" name="bgtYtdBal" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].bgtYtdBal}"></td>
+                                                            <td><input size="10" style="text-align:right;" id="actYtdBalPy1" name="actYtdBalPy1" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].actYtdBalPy1}"></td>
+                                                            <td><input size="10" style="text-align:right;" id="actYtdBalPy2" name="actYtdBalPy2" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].actYtdBalPy2}" readonly></td>
+                                                            <td><input size="10" style="text-align:right;" id="actYtdBalPy3" name="actYtdBalPy3" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].actYtdBalPy3}" readonly></td>
+                                                            <td><input size="10" style="text-align:right;" id="actYtdBalPy4" name="actYtdBalPy4" type="text" class="form-control" th:field="*{mistxns[__${iter.index}__].actYtdBalPy4}" readonly></td>
+                                                            <td>
+                                                                <td><input type="hidden" id="remarks" name="remarks"  class="form-control" th:field="*{mistxns[__${iter.index}__].remarks}">
+                                                                <input type="hidden" id="ccompcode" name="ccompcode"  class="form-control" th:field="*{mistxns[__${iter.index}__].ccompcode}">
+                                                                <input type="hidden" id="cmonth" name="cmonth"  class="form-control" th:field="*{mistxns[__${iter.index}__].cmonth}">
+                                                                <input type="hidden" id="cyear" name="cyear"  class="form-control" th:field="*{mistxns[__${iter.index}__].cyear}">
+                                                                <input type="hidden" id="desccd" name="desccd" class="form-control" th:field="*{mistxns[__${iter.index}__].desccd}">
+                                                                <input type="hidden" id="boldyn" name="boldyn"  class="form-control" th:field="*{mistxns[__${iter.index}__].boldyn}">
+                                                                <input id="cblock" type="hidden" name="cblock" class="form-control" th:field="*{mistxns[__${iter.index}__].cblock}">
+                                                                <input id="cactive" type="hidden" name="cactive"  class="form-control" th:field="*{mistxns[__${iter.index}__].cactive}">
+                                                                <input type="hidden" id="dcreationdate" name="dcreationdate"  class="form-control"  th:field="*{mistxns[__${iter.index}__].dcreationdate}" placeholder="yyyy-mm-dd">
+                                                                <input type="hidden" id="dmodifieddate" name="dmodifieddate"  class="form-control" th:field="*{mistxns[__${iter.index}__].dmodifieddate}" placeholder="yyyy-mm-dd">
+                                            
+                                                            </td>
+                                                            
+                                        
+                                                            
+                                                                <!--
+                                                            <tr th:each="mistxn, iter : ${mistxnListWrapper.mistxns}">
+                                                            
+                                                            <td><input type="text" th:field="*{mistxns[__${iter.index}__].ccompcode}" /></td>
+                                                        
+                                                            <td><input type="text" th:field="*{[__${iter.index}__].ccompcode}" /></td>
+                                                            <td><input type="text" th:field="*{[__${iter.index}__].cmonth}" /></td>
+                                                            <td><input type="text" th:field="*{[__${iter.index}__].cyear}" /></td>
+                                                            <td><input type="text" th:field="*{[__${iter.index}__].desccd}" /></td>
+                                                            <td><input type="text" th:field="*{[__${iter.index}__].boldyn}" maxlength="1" pattern="[YN]" /></td>
+                                                            -->
+                                                            <!-- Add other fields here -->
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                               
+
+                                                
+                                                <form th:object="${flash_rems}">
+                                                    <div class="form-group">
+                                                        <table border="0" cellpadding="1" cellspacing="0" width="98%">
+                                                            <tbody>
+                                                                <tr th:each="var_rem : ${flash_rems}">
+                                                                    <td>Remarks &nbsp;
+                                                                    </td>
+                                                                    <td>
+                                                                        <textarea cols="190" rows="4" id="remarks" th:field="*{remarks}" name="remarks"></textarea>
+                                                                         
+                                                                            <input type="hidden" th:field="*{ccompcode}" />
+                                                                            <input type="hidden" th:field="*{cyear}" />
+                                                                            <input type="hidden" th:field="*{cmonth}" />
+
+
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </form>
+                                                
+                                               
+                                                        <!--
+                                                         <td th:text="${var_rem.remarks}" />
+                                                        <textarea id="flash_rems" th:field="*{flash_rems}" name="flash_rems"></textarea>
+                                                      -->
+                                                
+                                                    
+                                                    
+                                    
+                                                  
+                                                <Input Type="button" Name=cmdSave Value='Save' class="btn cur-p btn-primary"  onclick="validate(form)" >
+                                                &nbsp;&nbsp;
+                                                <Input Type="button" Name=cmdValidate Value='Validate' class="btn cur-p btn-success"  onclick="Recalc(form)" >
+                                                &nbsp;&nbsp;
+                                                <Input Type="button" Name=cmdCancel Value='Cancel' class="btn cur-p btn-danger"  onclick="cancel(form)" >
+                                                    
+                                                <table border="0">
+                                                    <tr>
+                                                      <td th:text="${error}" />
+                                                    </tr>
+                                                  </table>
+                                        
+                                                  <script language="javascript">
+                                                   
+                                                    //alert(description[5].value);
+                                                    
+                                                    
+                                                    actMtdBal[2].style.textAlign="right";
+                                                    actMtdBal[2].readOnly=true;
+                                                    bgtMtdBal[2].readOnly = true;
+                                                    actMtdBalPy1[2].readOnly = true;
+                                                    //description[2].readOnly = true;
+                                                    actYtdBal[2].readOnly = true;
+                                                    bgtYtdBal[2].readOnly = true;
+                                                    actYtdBalPy1[2].readOnly = true;
+                                                    actYtdBalPy2[2].readOnly = true;
+                                                    actYtdBalPy3[2].readOnly = true;
+                                                    actYtdBalPy4[2].readOnly = true;
+                                        
+                                                    actMtdBal[2].style.backgroundColor = "orange";
+                                                    bgtMtdBal[2].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[2].style.backgroundColor = "orange";
+                                                    //description[2].style.backgroundColor = "orange";
+                                                    actYtdBal[2].style.backgroundColor = "orange";
+                                                    bgtYtdBal[2].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[2].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[2].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[2].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[2].style.backgroundColor = "orange";
+                                                    
+                                                    actMtdBal[6].readOnly=true
+                                                    bgtMtdBal[6].readOnly = true;
+                                                    actMtdBalPy1[6].readOnly = true;
+                                                    //description[6].readOnly = true;
+                                                    actYtdBal[6].readOnly = true;
+                                                    bgtYtdBal[6].readOnly = true;
+                                                    actYtdBalPy1[6].readOnly = true;
+                                                    actYtdBalPy2[6].readOnly = true;
+                                                    actYtdBalPy3[6].readOnly = true;
+                                                    actYtdBalPy4[6].readOnly = true;
+                                        
+                                                    actMtdBal[6].style.backgroundColor = "orange";
+                                                    bgtMtdBal[6].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[6].style.backgroundColor = "orange";
+                                                   // description[6].style.backgroundColor = "orange";
+                                                    actYtdBal[6].style.backgroundColor = "orange";
+                                                    bgtYtdBal[6].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[6].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[6].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[6].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[6].style.backgroundColor = "orange";
+                                        
+                                                    actMtdBal[8].readOnly=true;
+                                                    bgtMtdBal[8].readOnly = true;
+                                                    actMtdBalPy1[8].readOnly = true;
+                                                    //description[8].readOnly = true;
+                                                    actYtdBal[8].readOnly = true;
+                                                    bgtYtdBal[8].readOnly = true;
+                                                    actYtdBalPy1[8].readOnly = true;
+                                                    actYtdBalPy2[8].readOnly = true;
+                                                    actYtdBalPy3[8].readOnly = true;
+                                                    actYtdBalPy4[8].readOnly = true;
+                                        
+                                                    actMtdBal[8].style.backgroundColor = "orange";
+                                                    bgtMtdBal[8].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[8].style.backgroundColor = "orange";
+                                                    //description[8].style.backgroundColor = "orange";
+                                                    actYtdBal[8].style.backgroundColor = "orange";
+                                                    bgtYtdBal[8].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[8].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[8].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[8].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[8].style.backgroundColor = "orange";
+                                        
+                                        
+                                                    actMtdBal[11].readOnly=true;
+                                                    bgtMtdBal[11].readOnly = true;
+                                                    actMtdBalPy1[11].readOnly = true;
+                                                   // description[11].readOnly = true;
+                                                    actYtdBal[11].readOnly = true;
+                                                    bgtYtdBal[11].readOnly = true;
+                                                    actYtdBalPy1[11].readOnly = true;
+                                                    actYtdBalPy2[11].readOnly = true;
+                                                    actYtdBalPy3[11].readOnly = true;
+                                                    actYtdBalPy4[11].readOnly = true;
+                                        
+                                                    actMtdBal[11].style.backgroundColor = "orange";
+                                                    bgtMtdBal[11].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[11].style.backgroundColor = "orange";
+                                                    //description[11].style.backgroundColor = "orange";
+                                                    actYtdBal[11].style.backgroundColor = "orange";
+                                                    bgtYtdBal[11].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[11].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[11].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[11].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[11].style.backgroundColor = "orange";
+                                        
+                                                    actMtdBal[14].readOnly=true;
+                                                    bgtMtdBal[14].readOnly = true;
+                                                    actMtdBalPy1[14].readOnly = true;
+                                                   // description[14].readOnly = true;
+                                                    actYtdBal[14].readOnly = true;
+                                                    bgtYtdBal[14].readOnly = true;
+                                                    actYtdBalPy1[14].readOnly = true;
+                                                    actYtdBalPy2[14].readOnly = true;
+                                                    actYtdBalPy3[14].readOnly = true;
+                                                    actYtdBalPy4[14].readOnly = true;
+                                        
+                                                    actMtdBal[14].style.backgroundColor = "orange";
+                                                    bgtMtdBal[14].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[14].style.backgroundColor = "orange";
+                                                   // description[14].style.backgroundColor = "orange";
+                                                    actYtdBal[14].style.backgroundColor = "orange";
+                                                    bgtYtdBal[14].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[14].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[14].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[14].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[14].style.backgroundColor = "orange";
+                                        
+                                                    actMtdBal[15].readOnly=true;
+                                                    bgtMtdBal[15].readOnly = true;
+                                                    actMtdBalPy1[15].readOnly = true;
+                                                   // description[15].readOnly = true;
+                                                    actYtdBal[15].readOnly = true;
+                                                    bgtYtdBal[15].readOnly = true;
+                                                    actYtdBalPy1[15].readOnly = true;
+                                                    actYtdBalPy2[15].readOnly = true;
+                                                    actYtdBalPy3[15].readOnly = true;
+                                                    actYtdBalPy4[15].readOnly = true;
+                                        
+                                                    actMtdBal[15].style.backgroundColor = "orange";
+                                                    bgtMtdBal[15].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[15].style.backgroundColor = "orange";
+                                                    //description[15].style.backgroundColor = "orange";
+                                                    actYtdBal[15].style.backgroundColor = "orange";
+                                                    bgtYtdBal[15].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[15].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[15].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[15].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[15].style.backgroundColor = "orange";
+                                        
+                                                    actMtdBal[16].readOnly=true;
+                                                    bgtMtdBal[16].readOnly = true;
+                                                    actMtdBalPy1[16].readOnly = true;
+                                                    //description[16].readOnly = true;
+                                                    actYtdBal[16].readOnly = true;
+                                                    bgtYtdBal[16].readOnly = true;
+                                                    actYtdBalPy1[16].readOnly = true;
+                                                    actYtdBalPy2[16].readOnly = true;
+                                                    actYtdBalPy3[16].readOnly = true;
+                                                    actYtdBalPy4[16].readOnly = true;
+                                        
+                                                    actMtdBal[16].style.backgroundColor = "orange";
+                                                    bgtMtdBal[16].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[16].style.backgroundColor = "orange";
+                                                   // description[16].style.backgroundColor = "orange";
+                                                    actYtdBal[16].style.backgroundColor = "orange";
+                                                    bgtYtdBal[16].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[16].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[16].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[16].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[16].style.backgroundColor = "orange";
+                                        
+                                                    actMtdBal[17].readOnly=true;
+                                                    bgtMtdBal[17].readOnly = true;
+                                                    actMtdBalPy1[17].readOnly = true;
+                                                    //description[17].readOnly = true;
+                                                    actYtdBal[17].readOnly = true;
+                                                    bgtYtdBal[17].readOnly = true;
+                                                    actYtdBalPy1[17].readOnly = true;
+                                                    actYtdBalPy2[17].readOnly = true;
+                                                    actYtdBalPy3[17].readOnly = true;
+                                                    actYtdBalPy4[17].readOnly = true;
+                                        
+                                                    actMtdBal[17].style.backgroundColor = "orange";
+                                                    bgtMtdBal[17].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[17].style.backgroundColor = "orange";
+                                                    //description[17].style.backgroundColor = "orange";
+                                                    actYtdBal[17].style.backgroundColor = "orange";
+                                                    bgtYtdBal[17].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[17].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[17].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[17].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[17].style.backgroundColor = "orange";
+                                        
+                                        
+                                                    actMtdBal[18].readOnly=true;
+                                                    bgtMtdBal[18].readOnly = true;
+                                                    actMtdBalPy1[18].readOnly = true;
+                                                    //description[18].readOnly = true;
+                                                    actYtdBal[18].readOnly = true;
+                                                    bgtYtdBal[18].readOnly = true;
+                                                    actYtdBalPy1[18].readOnly = true;
+                                                    actYtdBalPy2[18].readOnly = true;
+                                                    actYtdBalPy3[18].readOnly = true;
+                                                    actYtdBalPy4[18].readOnly = true;
+                                        
+                                                    actMtdBal[18].style.backgroundColor = "orange";
+                                                    bgtMtdBal[18].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[18].style.backgroundColor = "orange";
+                                                    //description[18].style.backgroundColor = "orange";
+                                                    actYtdBal[18].style.backgroundColor = "orange";
+                                                    bgtYtdBal[18].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[18].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[18].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[18].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[18].style.backgroundColor = "orange";
+                                                    
+                                                    
+                                                    actMtdBal[19].readOnly=true;
+                                                    bgtMtdBal[19].readOnly = true;
+                                                    actMtdBalPy1[19].readOnly = true;
+                                                    //description[19].readOnly = true;
+                                                    actYtdBal[19].readOnly = true;
+                                                    bgtYtdBal[19].readOnly = true;
+                                                    actYtdBalPy1[19].readOnly = true;
+                                                    actYtdBalPy2[19].readOnly = true;
+                                                    actYtdBalPy3[19].readOnly = true;
+                                                    actYtdBalPy4[19].readOnly = true;
+                                        
+                                                    actMtdBal[19].style.backgroundColor = "orange";
+                                                    bgtMtdBal[19].style.backgroundColor = "orange";
+                                                    actMtdBalPy1[19].style.backgroundColor = "orange";
+                                                    //description[19].style.backgroundColor = "orange";
+                                                    actYtdBal[19].style.backgroundColor = "orange";
+                                                    bgtYtdBal[19].style.backgroundColor = "orange";
+                                                    actYtdBalPy1[19].style.backgroundColor = "orange";
+                                                    actYtdBalPy2[19].style.backgroundColor = "orange";
+                                                    actYtdBalPy3[19].style.backgroundColor = "orange";
+                                                    actYtdBalPy4[19].style.backgroundColor = "orange";
+                                        
+                                                    function validate(form)
+                                                    {
+                                                        //alert (parseFloat(actMtdBal[0].value) );
+                                                        actMtdBal[2].value = (parseFloat(actMtdBal[0].value) - parseFloat(actMtdBal[1].value)).toFixed(3) ;
+                                                        bgtMtdBal[2].value = parseFloat(bgtMtdBal[0].value) - parseFloat(bgtMtdBal[1].value) ;
+                                                        actMtdBalPy1[2].value = parseFloat(actMtdBalPy1[0].value) - parseFloat(actMtdBalPy1[1].value) ;
+                                                        actYtdBal[2].value = parseFloat(actYtdBal[0].value) - parseFloat(actYtdBal[1].value) ;
+                                                        bgtYtdBal[2].value = parseFloat(bgtYtdBal[0].value) - parseFloat(bgtYtdBal[1].value) ;
+                                                        actYtdBalPy1[2].value = parseFloat(actYtdBalPy1[0].value) - parseFloat(actYtdBalPy1[1].value) ;
+                                                        actYtdBalPy2[2].value = parseFloat(actYtdBalPy2[0].value) - parseFloat(actYtdBalPy2[1].value) ;
+                                                        actYtdBalPy3[2].value = parseFloat(actYtdBalPy3[0].value) - parseFloat(actYtdBalPy3[1].value) ;
+                                                        actYtdBalPy4[2].value = parseFloat(actYtdBalPy4[0].value) - parseFloat(actYtdBalPy4[1].value) ;
+                                                        form.submit();
+                                                    }
+
+                                                    function cancel(form)
+                                                    {
+                                                        form.action="/cancel";
+                                                        form.submit();
+                                                    }
+                                                  </script>    
+                                                        
+                                                  </center>
+                                            </form>
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- The content End -->
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <footer th:replace="fragments/footer :: footer"></footer>
+                        </div>
+                    </div>
+                    <!-- end dashboard inner -->
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+
+        <!-- Include the footer 
+        <div th:replace="fragments/footer :: foot"></div>
+        -->
+    </div>
+    </div>
+</body>
+
+</html>

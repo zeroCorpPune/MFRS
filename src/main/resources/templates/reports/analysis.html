@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <menu th:replace="fragments/menu :: menu"></menu>
+            </nav>
+            <!-- Include the menu -->
+
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <img class="img-responsive" src="images/logo/logo.png" alt="#" />
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user"
+                                                    th:text="${theuserid}"></span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+
+                <!-- dashboard inner -->
+
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>Reports </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The content Start  But Change Heading-->
+                        
+                        <div class="row column4 graph">
+                            <div class="container-fluid">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        <div class="dash_head">
+                                            <h3><span>Report Parameters</span></h3>
+                                        </div>
+                                        <div class="task_list_main">
+
+
+                                            <form name="form" method="POST">
+                                                <center><br>
+                                                <table width="50%" border="1">
+                                                    <tr>
+                                                        <td>
+                                                            <label class="col-form-label-sm" >Report Name</label>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <select class="form-control-sm" id="rptname" >
+                                                                <option value="Flash">Group Flash Report</option>
+                                                                <option value="FlashMIS" selected>Flash MIS Report</option>
+                                                            </select>
+                                                        </td>
+                                                   </tr>
+                                                   <tr>
+
+                                                        <td>
+                                                            <label class="col-form-label-sm" >OGC:</label>
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <select class="form-control-sm" id="cmbcompany" name="cmbcompany" Size=20  multiple>
+                                                                <option th:each="comp : ${companies}"
+                                                                    th:value="${comp.ccompcode}" th:text="${comp.ccompname}"
+                                                                    >
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                        </tr>
+                                                        <td>
+                                                            <label class="col-form-label-sm" for="year">Year:</label>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control-sm" id="year" name="year">
+                                                                <option th:each="year : ${years}"
+                                                                    th:text="${year}" th:value="${year}"
+                                                                    th:selected="${year} == ${currentYear}">
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <label class="col-form-label-sm">Month:</label>
+                                                        </td>                    
+                                                        <td>
+                                                            <select class="form-control-sm" id="month" name="month" onchange="changeTimeframe(form)">
+                                                                <option th:each="monthEntry : ${months}" 
+                                                                th:value="${monthEntry.key}" 
+                                                                th:text="${monthEntry.value}" 
+                                                                th:selected="${monthEntry.key} == ${currentMonth}">
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="4" align="center">
+                                                            <button type="button" class="btn cur-p btn-primary" onclick="generateReport(form)">Preview</button>
+                                                            <input type="hidden" id="cmbCompanylist" name="cmbCompanylist">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                </center>
+                                                <script>
+
+                                                    function generateReport(from)
+                                                    {
+                                                        /*
+                                                        form.action="/report/pdf";
+                                                        form.method= "POST";
+                                                        form.submit();
+                                                        */
+                                                    
+                                                        mCompany="";
+                                                        for(i=0;i<=form.cmbcompany.options.length-1;i++)
+                                                        {    
+                                                            if(form.cmbcompany.options[i].selected)
+                                                                mCompany=mCompany   + form.cmbcompany.options[i].value + ",";
+                                                        }
+                                                        mCompany=mCompany.substr(0,mCompany.length-1);
+                                                        form.cmbCompanylist.value=mCompany;
+                                                        
+                                                        if (form.rptname.value=="Flash")
+                                                            form.action="/flashReport";
+                                                        else
+                                                            form.action="/flashMISReport";
+                                                        
+                                                        form.method= "POST";
+                                                        form.target="_blank";
+                                                        form.submit();
+
+                                                    }
+                                                </script>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- The content End -->
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <footer th:replace="fragments/footer :: footer"></footer>
+                        </div>
+                    </div>
+                    <!-- end dashboard inner -->
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+
+        <!-- Include the footer 
+        <div th:replace="fragments/footer :: foot"></div>
+        -->
+    </div>
+    </div>
+</body>
+
+</html>

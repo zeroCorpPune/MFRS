@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <section class="food_section layout_padding">
+        <div class="container">
+          <div class="heading_container">
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form_container">
+                <h3> Add Company </h3>
+                <form action="#"
+                    th:action="@{/company/addnewcompany}"
+                    th:object="${company}"
+                    method="post">
+                  <div class="form-group">
+                    <input type="text" id="ccompcode" name="ccompcode" />
+                    <p th:if="${#fields.hasErrors('ccompcode')}" th:errors="*{ccompcode}" class="alert alert-danger" role="alert">title Error</p>
+                    <input id="ccompname" name="ccompname" th:field="*{ccompname}" type="text" class="form-control" placeholder="ccompname"/>
+                    
+                    <p th:if="${#fields.hasErrors('ccompname')}" th:errors="*{ccompname}" class="alert alert-danger" role="alert">title Error</p>
+                    
+                  </div>
+                  <div>
+                    <!--
+                    <select id="useflash" name="useflash"  class="form-control">
+                      <option value="Y">Yes</option>
+                      <option value="N">No</option>
+                    </select>
+                    -->
+                    <!--
+                    <p th:if="${#fields.hasErrors('useflash')}" th:errors="*{useflash}" class="alert alert-danger" role="alert">Select rights for flash</p>
+                    -->
+                  </div>
+                  <table border="1">
+                    <tr>
+                      <td th:text="${customerror}" />
+                    </tr>
+                  </table>
+                  
+                    <button type="submit"  class="btn btn-primary">
+                      Add Company
+                    </button>
+                </form>
+              </div>
+            </div>
+        </div>
+      </section>
+</body>
+</html>

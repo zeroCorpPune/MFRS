@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <menu th:replace="fragments/menu :: menu"></menu>
+            </nav>
+            <!-- Include the menu -->
+
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <img class="img-responsive" src="images/logo/logo.png" alt="#" />
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user"
+                                                    th:text="${theuserid}"></span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+
+                <!-- dashboard inner -->
+
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>InterCo Dividend Entry Form </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The content Start  But Change Heading-->
+
+                        <div class="row column4 graph">
+                            <div class="container-fluid">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        <div class="task_list_main">
+                                            <span class="name_user" th:text="${error}"></span>
+                                            <form name="form" id="dividendIncomeForm" th:object="${dividendIncomeWrapper}" th:action="@{/dividend_income/saveAll}" method="post">
+                                                <table id="data-table" border="1">
+                                                    <thead>
+                                                        <tr>
+                                                            <Td Align="Center" COlspan=1>
+                                                            MTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            MTD<br>
+                                                            Budget<br>
+                                                            <span  th:text="${cur_year}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            MTD<br>
+                                                            Flash<br>
+                                                            <span  th:text="${cur_year}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            OGC Name<br>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Flash<br>
+                                                            <span  th:text="${cur_year}"></span>
+                                                            </td>
+                                                    
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Budget<br>
+                                                            <span  th:text="${cur_year}"></span>
+                                                            </td>
+                                                            
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year}"></span>
+                                                            </td>
+                                                            
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year2}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year3}"></span>
+                                                            </td>
+                                                            <Td Align=Center COlspan=1>
+                                                            YTD<br>
+                                                            Actual<br>
+                                                            <span  th:text="${prev_year4}"></span>
+                                                            </td>
+                                                        </tr>	
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- Loop through saved records and pre-populate rows -->
+                                                        <tr th:each="income, iterStat : ${dividendIncomeList}">
+                                                            
+
+                                                            <td>
+                                                                <input type="nimber" size="10" 
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].actMtdBalPy1'" 
+                                                                    th:value="${income.actMtdBalPy1}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="nimber" size="10"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].bgtMtdBal'" 
+                                                                    th:value="${income.bgtMtdBal}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="nimber" size="10"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].actMtdBal'" 
+                                                                    th:value="${income.actMtdBal}">
+                                                            </td>
+                                                            <td>
+                                                                <select
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].description'">
+                                                                    <option th:each="company : ${companies}"
+                                                                        th:value="${company.ccompcode}"
+                                                                        th:text="${company.ccompname}"
+                                                                        th:selected="${company.ccompcode == income.description}">
+                                                                    </option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input type="nimber" size="10"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].actYtdBal'" 
+                                                                    th:value="${income.actYtdBal}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="nimber" size="10"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].bgtYtdBal'" 
+                                                                    th:value="${income.bgtYtdBal}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="nimber" size="10"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].actYtdBalPy1'" 
+                                                                    th:value="${income.actYtdBalPy1}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="nimber" size="10"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].actYtdBalPy2'" 
+                                                                    th:value="${income.actYtdBalPy2}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="nimber" size="10"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].actYtdBalPy3'" 
+                                                                    th:value="${income.actYtdBalPy3}">
+                                                            </td>
+                                                            <td>
+                                                                <input type="nimber" size="10"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].actYtdBalPy4'" 
+                                                                    th:value="${income.actYtdBalPy4}">
+                                                            </td>
+                                                            <td>
+                                                                <input size="10" type="hidden"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].ccompcode'" 
+                                                                    th:value="${income.ccompcode}">
+                                                           
+                                                                <input size="10" type="hidden"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].cyear'" 
+                                                                    th:value="${income.cyear}">
+                                                                <input size="10" type="hidden"
+                                                                th:attr="name='dividendIncomeList[' + ${iterStat.index} + '].cmonth'" 
+                                                                    th:value="${income.cmonth}">
+                                                           
+                                                                <button type="button"
+                                                                    onclick="deleteRow(this)">Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <button type="button" onclick="addRow()">Add Row</button>
+                                                <button type="submit">Save</button>
+                                                <input type="hidden" id="deletedRows" name="deletedRows" value="[]">
+                                            
+                                            
+                                            <script th:inline="javascript">
+                                                let rowIndex = 0;
+                                                /*<![CDATA[*/
+                                                let companies = JSON.parse(/*[[${companiesJson}]]*/ '[]');
+                                                //console.log(companies);
+                                                /*]]>*/
+                                                // Function to dynamically add a new row
+                                                function addRow(existingData = {}) {
+                                                    //alert(/*[[${theCompanyCode}]]*/);
+                                                    let theCompanyCode = /*[[${theCompanyCode}]]*/;
+                                                    let theYear = /*[[${theYear}]]*/;
+                                                    let theMonth = /*[[${theMonth}]]*/;
+                                                    //alert("code = " + theCompanyCode);
+                                                    let table = document.getElementById("data-table");
+                                                    let rowCount = table.rows.length - 1; // Skip header row
+                                                    let row = table.insertRow();
+
+                                                    let actMtdBalPy1Cell = row.insertCell(0);
+                                                    let bgtMtdBalCell = row.insertCell(1);
+                                                    let actMtdBalCell = row.insertCell(2);
+                                                    let companyCell = row.insertCell(3);
+                                                    let actYtdBalCell = row.insertCell(4);
+                                                    let bgtYtdBalCell = row.insertCell(5);
+                                                    let actYtdBalPy1Cell = row.insertCell(6);
+                                                    let actYtdBalPy2Cell = row.insertCell(7);
+                                                    let actYtdBalPy3Cell = row.insertCell(8);
+                                                    let actYtdBalPy4Cell = row.insertCell(9);
+
+
+
+                                                    
+                                                    let ccompcode = row.insertCell(10);
+                                                    let cyear = row.insertCell(10);
+                                                    let cmonth = row.insertCell(10);
+                                                    let deleteCell = row.insertCell(10);
+
+                                                    // Create dropdown for company, pre-select based on existing data if provided
+                                                    let select = document.createElement("select");
+                                                    select.name = `dividendIncomeList[${rowCount}].description`; // Store company code in description field
+
+                                                    companies.forEach(company => {
+                                                        let option = document.createElement("option");
+                                                        option.value = company.ccompcode;
+                                                        option.text = company.ccompname;
+
+                                                        // Pre-select the option if existing data matches
+                                                        if (existingData.description === company.ccompcode) {
+                                                            option.selected = true;
+                                                        }
+
+                                                        select.appendChild(option);
+                                                    });
+
+                                                    companyCell.appendChild(select);
+
+                                                    // Add input fields for actMtdBal and bgtMtdBal, pre-fill with existing data if provided
+                                                    actMtdBalPy1Cell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].actMtdBalPy1" value="${existingData.actMtdBalPy1 || ''}">`;
+                                                    bgtMtdBalCell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].bgtMtdBal" value="${existingData.bgtMtdBal || ''}">`;
+                                                    actMtdBalCell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].actMtdBal" value="${existingData.actMtdBal || ''}">`;
+                                                    
+                                                    actYtdBalCell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].actYtdBal" value="${existingData.actYtdBal || ''}">`;
+                                                    bgtYtdBalCell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].bgtYtdBal" value="${existingData.bgtYtdBal || ''}">`;
+                                                    actYtdBalPy1Cell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].actYtdBalPy1" value="${existingData.actYtdBalPy1 || ''}">`;
+                                                    actYtdBalPy2Cell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].actYtdBalPy2" value="${existingData.actYtdBalPy2 || ''}">`;
+                                                    actYtdBalPy3Cell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].actYtdBalPy3" value="${existingData.actYtdBalPy3 || ''}">`;
+                                                    actYtdBalPy4Cell.innerHTML = `<input type="nimber" size="10" name="dividendIncomeList[${rowCount}].actYtdBalPy4" value="${existingData.actYtdBalPy4 || ''}">`;
+                                                    
+
+                                                    ccompcode.innerHTML = `<input type="hidden"  name="dividendIncomeList[${rowCount}].ccompcode" value="${theCompanyCode || ''}">`;
+                                                    cyear.innerHTML =   `<input type="hidden"  name="dividendIncomeList[${rowCount}].cyear" value="${theYear || ''}">`;
+                                                    cmonth.innerHTML = `<input type="hidden" size="10"  name="dividendIncomeList[${rowCount}].cmonth" value="${theMonth || ''}">`;
+                                                    
+                                                    
+                                                    // Add delete button
+                                                    deleteCell.innerHTML = '<button type="button" onclick="deleteRow(this)">Delete</button>';
+                                                }
+
+                                                let deletedRows = [];
+
+                                                function deleteRow(button) {
+                                                   /* part 1
+                                                    let row = button.parentElement.parentElement;
+                                                    row.remove();
+                                                    */
+                                                   /* part 2
+                                                    let row = button.parentNode.parentNode;
+                                                    row.parentNode.removeChild(row);
+
+                                                    // Re-index the remaining rows
+                                                    reIndexRows();
+                                                    */
+                                                    
+
+                                                    //let row = document.querySelector('#data-table tbody tr');
+                                                    let row = button.parentElement.parentElement;
+                                                    let ccompcode = row.querySelector('input[name^="dividendIncomeList"][name$=".ccompcode"]').value;
+                                                    alert(ccompcode);
+                                                    let cyear = row.querySelector('input[name^="dividendIncomeList"][name$=".cyear"]').value;
+                                                    alert(cyear);
+                                                    let cmonth = row.querySelector('input[name^="dividendIncomeList"][name$=".cmonth"]').value;
+                                                    alert(cmonth);
+                                                    let description = row.querySelector('select[name^="dividendIncomeList"][name$=".description"]').value;
+                                                    alert(description);
+
+                                                    /*
+                                                    let row = button.parentNode.parentNode;
+                                                    let ccompcode = row.querySelector('input[name^="dividendIncomeList"]').value;
+                                                    let cyear = row.querySelector('input[name^="dividendIncomeList"]').value;
+                                                    let cmonth = row.querySelector('input[name^="dividendIncomeList"]').value;
+                                                    let description = row.querySelector('select[name^="dividendIncomeList"]').value;
+                                                    */
+                                                    // Store the primary key values of the deleted row
+                                                    deletedRows.push({
+                                                        ccompcode: ccompcode,
+                                                        cyear: cyear,
+                                                        cmonth: cmonth,
+                                                        description: description
+                                                    });
+
+                                                    // Remove the row from the table
+                                                    row.remove();
+                                                    reIndexRows();
+
+                                                }
+                                                function reIndexRows() {
+                                                    let rows = document.querySelectorAll("#data-table tbody tr");
+
+                                                    rows.forEach((row, index) => {
+                                                        row.querySelectorAll('input, select').forEach(input => {
+                                                            // Update the name attribute with the new index
+                                                            let name = input.getAttribute('name');
+                                                            if (name) {
+                                                                let newName = name.replace(/\[\d+\]/, '[' + index + ']');
+                                                                input.setAttribute('name', newName);
+                                                            }
+                                                        });
+                                                    });
+                                                    document.getElementById("deletedRows").value = JSON.stringify(deletedRows);
+                                                }
+                                                // Optionally, preload some data if you're editing existing records
+                                                $(document).ready(function () {
+                                                    // Example of adding existing rows
+                                                    // addRow({ccompcode: '001', cmonth: '01', cyear: '2024', description: 'Company A'});
+                                                });
+                                            </script>
+</form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- The content End -->
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <footer th:replace="fragments/footer :: footer"></footer>
+                        </div>
+                    </div>
+                    <!-- end dashboard inner -->
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+
+        <!-- Include the footer 
+        <div th:replace="fragments/footer :: foot"></div>
+        -->
+    </div>
+    </div>
+</body>
+
+</html>

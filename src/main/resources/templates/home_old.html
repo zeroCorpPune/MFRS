@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>MFRS - Index</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      
+      
+      
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css" />
+      <!-- site css -->
+      <link rel="stylesheet" href="css/style.css" />
+      <!-- responsive css -->
+      <link rel="stylesheet" href="css/responsive.css" />
+      <!-- select bootstrap -->
+      <link rel="stylesheet" href="css/bootstrap-select.css" />
+      <!-- scrollbar css -->
+      <link rel="stylesheet" href="css/perfect-scrollbar.css" />
+      <!-- custom css -->
+      <link rel="stylesheet" href="css/custom.css" />
+
+     
+      
+      
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body class="dashboard dashboard_1">
+      <div class="full_container">
+         <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+               <div class="sidebar_blog_1">
+                  <div class="sidebar-header">
+                     <div class="logo_section">
+                        <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                     </div>
+                  </div>
+               </div>
+               <div class="sidebar_blog_2">
+                  <h4>Menu</h4>
+                  <ul class="list-unstyled components">
+                     <li class="active">
+					    <li><a href="index.html"><i class="fa fa-file-text yellow_color"></i> <span>Notice Board</span></a></li>
+                     </li>
+					 <!--
+					 <div class="i-fa:building w-1em h-1em"></div>
+					 -->
+                <li><a href="widgets.html"><i class="fa fa-building white_color"></i> <span>Company Master</span></a></li>
+                <li><a href="tables.html"><i class="fa fa-bolt orange_color"></i> <span>Flash</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-diamond purple_color"></i> <span>SAF</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-road blue2_color"></i> <span>Receivable / Payable</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-map-signs green_color"></i> <span>Financial Position</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-ship red_color"></i> <span>Trade Receivable</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-university yellow_color"></i> <span>Bank Borrowings</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-money-bill-wave purple_color2"></i> <span>Working Capital</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-briefcase blue1_color"></i> <span>Budget</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-clone yellow_color"></i> <span>Budget Distribution</span></a></li>
+					 <li><a href="tables.html"><i class="fa fa-bar-chart green_color"></i> <span>Reports</span></a></li>
+
+                     
+                  </ul>
+               </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+               <!-- topbar -->
+               <div class="topbar">
+                  <nav class="navbar navbar-expand-lg navbar-light">
+                     <div class="full">
+                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                        <div class="logo_section">
+                           <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
+                        </div>
+                        <div class="right_topbar">
+                           <div class="icon_info">
+                              <ul class="user_profile_dd">
+                                 <li>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user">Mr. Vipul Rameshchandra Mistry1</span></a>
+                                    <div class="dropdown-menu">
+                                       <a class="dropdown-item" href="logout"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                    </div>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </nav>
+               </div>
+               <!-- end topbar -->
+               <!-- dashboard inner -->
+               <div class="midde_cont">
+                  <div class="container-fluid">
+                     <div class="row column_title">
+                        <div class="col-md-12">
+                           <div class="page_title">
+                              <h2>Notice Board</h2>
+                           </div>
+                        </div>
+                     </div>
+
+                    <div class="row column4 graph">
+                        <div class="container-fluid">
+                           <div class="dash_blog">
+                              <div class="dash_blog_inner">
+                                 <div class="dash_head">
+                                    <h3><span>Task List</span></h3>
+                                 </div>
+                                 <div class="task_list_main">
+                                    <ul class="task_list">
+                                       <li>Last Date For submitting Flash<br><strong>31-July-2024</strong></li>
+                                    </ul>
+									            <ul class="task_list">
+                                       <li>Last Date For submitting Bank Borrowings and other modules <br><strong>1-Aug-2024</strong></li>
+                                    </ul>
+
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                    
+                     
+                  </div>
+                  <!-- footer -->
+                  <div class="container-fluid">
+                     <div class="footer">
+                        <p>Copyright © 2024 Riyam Computer Services LLC.</p>
+                     </div>
+                  </div>
+               </div>
+               <!-- end dashboard inner -->
+            </div>
+         </div>
+      </div>
+
+      
+      <!-- jQuery -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <!-- wow animation -->
+      <script src="js/animate.js"></script>
+      <!-- select country -->
+      <script src="js/bootstrap-select.js"></script>
+      <!-- owl carousel -->
+      <script src="js/owl.carousel.js"></script> 
+      <!-- chart js -->
+      <script src="js/Chart.min.js"></script>
+      <script src="js/Chart.bundle.min.js"></script>
+      <script src="js/utils.js"></script>
+      <script src="js/analyser.js"></script>
+      <!-- nice scrollbar -->
+      <script src="js/perfect-scrollbar.min.js"></script>
+      <script>
+         var ps = new PerfectScrollbar('#sidebar');
+      </script>
+      <!-- custom js -->
+      <script src="js/chart_custom_style1.js"></script>
+      <script src="js/custom.js"></script>
+   </body>
+</html>

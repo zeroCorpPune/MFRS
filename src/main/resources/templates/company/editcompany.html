@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<body class="sub_page">
+
+
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container">
+
+      <span sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/index">Go back</a>
+      </span>
+
+      <span sec:authorize="isAuthenticated()">
+        <a href="/logout">Log out</a>
+      </span>
+      <!--
+      <div class="welcomemessage">
+        welcome <p th:text="${theuserid}"></p>
+      </div>
+
+-->
+      <form action="#" th:action="@{'/editcompany/'}" th:object="${company}"   method="post">
+        <div>
+          <h3> Edit Company </h3>
+          <input id="ccompcode" th:field="*{ccompcode}" name="ccompcode" type="text" class="form-control"
+            placeholder="enter company code" readonly/>
+          <input id="ccompname" th:field="*{ccompname}" name="ccompname" type="text" class="form-control"
+            placeholder="enter company name" />
+          <p th:if="${#fields.hasErrors('ccompname')}" th:errors="*{ccompname}" class="alert alert-danger" role="alert">
+            title Error</p>
+        </div>
+        <!--
+        <table border="1">
+          <tr>
+        <td th:text="${companycode}" />
+      </tr>
+        </table>
+        -->
+        <div>
+          <!--
+          <select id="useflash" name="useflash" th:field="*{useflash}" class="form-control">
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+          </select>
+          <p th:if="${#fields.hasErrors('useflash')}" th:errors="*{useflash}" class="alert alert-danger" role="alert">
+            Select
+            rights for flash</p>
+        </div>
+        -->
+        <button type="submit"  class="btn btn-primary">
+          Update Company
+        </button>
+
+        
+      </form>
+
+
+    </div>
+  </section>
+
+</body>
+
+</html>

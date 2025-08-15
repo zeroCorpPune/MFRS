@@ -1,0 +1,99 @@
+*AAI        idris_itcom@omzest.com
+ABS        laiju_antony@abs.co.om
+ADINC      sreeni@adincoman.com,idris_itcom@omzest.com,safa@adincoman.com
+AKDS       akds@omzest.com,idris_itcom@omzest.com
+AL-WARDHA  vsmehta_alwardha@omzest.com,alwardha@omzest.com
+AMIANTIT   amian@omzest.com,walter_amiantit@omzest.com
+AMLSC      sibu.mathew@almadinalogistics.com
+AMO        amian@omzest.com,walter_amiantit@omzest.com
+					AVOD       ganesh@avod.com.om,rajesh@avod.com.om
+BISHARA    pk.ramesh@bishara.com,rishikesh@bishara.com,abraham@bishara.com
+GET        get@omzest.com,getoman@omantel.net.om,satish_finance@omzest.com
+IMOS       amian@omzest.com,walter_amiantit@omzest.com
+IOTS       pk.ramesh@bishara.com,rishikesh@bishara.com,abraham@bishara.com
+JSS        jyotijss@omantel.net.om,jyotijss@omzest.com
+MCCM       mcc@omzest.com
+MCS        mcs@omzest.com,idris_itcom@omzest.com
+MIT        mzt@omzest.com,msh@mezoontravel.com,nitin.pardeshi@mezoontravel.com
+MSS        mss@omzest.com
+MT         mzt@omzest.com,msh@mezoontravel.com,nitin.pardeshi@mezoontravel.com
+NHI        fc_nhi@omzest.com,accounts_nhi@omzest.com,nhi@omzest.com
+NOSCO      harry@riyamengg.com,nosco@omzest.com
+NTS        nts@omzest.com,sinhaml_nts@omzest.com
+OFCC       yatin@ofcc.co.om,hemraj@ofcc.co.om
+OFFICE-SUP ifthikar_oss@omzest.com,oss@omzest.com
+OMC        anup.guha@omanmethanol.com
+OMHC       satish_finance@omzest.com,dhtambekar@omzest.com
+OMSC       omsc@omzest.com,ellewaa@omsc.co.om
+OMZC       edf@omzest.com,k.sajeesh@omzest.com
+OMZI       satish_finance@omzest.com,dhtambekar@omzest.com
+				OSSO       get@omzest.com,getoman@omantel.net.om,satish_finance@omzest.com
+				OTM        otm@omzest.com,raghavan_otm@omzest.com
+				PI         satish_finance@omzest.com,dhtambekar@omzest.com
+				PPI        ppi@omzest.com,kutty_wacom@omzest.com
+				PREA       pre@omzest.com
+				PRED       pre@omzest.com
+									RBP        reembat@omzest.com,vibhor.vishnoi@reembatteries.co.om
+									RCS        rcs@omzest.com,ankit_rcs@omzest.com
+									RES        res@omzest.com,fairoos@riyamengg.com
+RITE       gm.rite@omzest.com,rite@omzest.com	
+SPOL       sado@omzest.com,mohammed.amanullah@akzonobel.com,shinoj.thomas@akzonobel.com
+WA         wass@omzest.com,naveen_wass@omzest.com
+WACOM      wacom@omantel.net.om,kutty_wacom@omzest.com
+WCAS       waljatcm@omantel.net.om,krishnan@waljat.net
+WHC        k.sajeesh@omzest.com
+WMP        finance-wass@omzest.com
+WP         wpl@omzest.com,ramnath_wpl@omzest.com
+ZBD        obd@omzest.com
+ZTC        finance.ztc@omzest.com,kishor.ztc@omzest.com,nandakishore.ztc@omzest.com,jayesh.ztc@omzest.com
+
+
+
+Bank Borrowing Reminder
+
+CCOMPCODE  CCOMPNAME                                                                   CEMAIL                                                                                       BUDGET_CEMAIL
+---------- --------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------- ----------------------------------------------------
+ABS        AREEJ BUSINESS SYSTEMS - LLC                                                laiju_antony@abs.co.om                                                                               kutty_wacom@omzest.com
+ADINC      ADVERTISING INTERNATIONAL CO - LLC                                          sreeni@adincoman.com,idris_itcom@omzest.com,safa@adincoman.com                                       sreeni@adincoman.com
+AKDS       AL KHUWAIR DEVELOPMENT SERVICES CO - LLC                                    akds@omzest.com,idris_itcom@omzest.com                                                               idris_itcom@omzest.com
+AL-WARDHA  AL WARDHA FOOTWEAR  LEATHER PRODUCTS CO - LLC                               vsmehta_alwardha@omzest.com,alwardha@omzest.com                                                      vsmehta_alwardha@omzest.com
+AMIANTIT   AMIANTIT OMAN  - LLC                                                        amian@omzest.com,walter_amiantit@omzest.com                                                          tandon_amiantit@omzest.com
+AMO        AMIANTIT OMAN CONCRETE PRODUCTS LLC                                         amian@omzest.com,walter_amiantit@omzest.com                                                          tandon_amiantit@omzest.com
+AVOD       AREEJ VEGETABLE OILS DERIVATIVES - SAOC                                     ganesh@avod.com.om,rajesh@avod.com.om                                                                finance@avod.com.om
+BISHARA    BISHARA ESTABLISHMENT - LLC                                                 pk.ramesh@bishara.com,rishikesh@bishara.com,abraham@bishara.com                                      Pk.Ramesh@bishara.com
+GET        GENERAL ELECTRONICS  TRADING CO - LLC                                       get@omzest.com,getoman@omantel.net.om,satish_finance@omzest.com                                      get@omzest.com
+IMOS       INTEGRATED MANUFACTURING AND OILS SERVICES LLC                              amian@omzest.com,walter_amiantit@omzest.com                                                          tandon_amiantit@omzest.com
+IOTS       INFORMATION AND OFFICE TECHNOLOGY SERVICES LLC                              pk.ramesh@bishara.com,rishikesh@bishara.com,abraham@bishara.com                                      pk.ramesh@bishara.com
+JSS        JYOTI SOHAR SWITCHGEAR - LLC                                                jyotijss@omantel.net.om,jyotijss@omzest.com                                                          jyotijss@omzest.com
+MCCM       MUSCAT CONTRACT CLEANING  MAINTENANCE - LLC                                 mcc@omzest.com                                                                                       mcc@omzest.com
+MIT        MEZOON INTERNATIONAL TRAVEL AND TOURS LLC                                   mzt@omzest.com,msh@mezoontravel.com,nitin.pardeshi@mezoontravel.com                                  mzt@omzest.com
+MSS        MEDICAL  SCIENTIFIC SUPPLIES - LLC                                          mss@omzest.com                                                                                       mss@omzest.com
+MT         MEZOON TRAVEL LLC                                                           mzt@omzest.com,msh@mezoontravel.com,nitin.pardeshi@mezoontravel.com                                  mzt@omzest.com
+NHI        NATIONAL HEATERS INDUSTRIES CO - LLC                                        fc_nhi@omzest.com,accounts_nhi@omzest.com,nhi@omzest.com                                             nhi@omzest.com
+NOSCO      NATIONAL OILFIELD SUPPLY CO - LLC                                           harry@riyamengg.com,nosco@omzest.com                                                                 nosco@omzest.com
+NTS        NATIONAL TELEPHONE SERVICES CO - LLC                                        nts@omzest.com,sinhaml_nts@omzest.com                                                                nts@omzest.com
+OFCC       OMAN FORMALDEHYDE CHEMICAL COMPANY                                          yatin@ofcc.co.om,hemraj@ofcc.co.om                                                                   hemraj@ofcc.co.om
+OFFICE-SUP OFFICE SUPPLIES CO - LLC                                                    ifthikar_oss@omzest.com,oss@omzest.com                                                               oss@omzest.com
+OMHC       OMAN METHANOL HORIZON COMPANY LLC                                           satish_finance@omzest.com,dhtambekar@omzest.com                                                      satish_finance@omzest.com
+OMSC       OMAN MECHANICAL SERVICES COMPANY LTD - LLC                                  omsc@omzest.com,ellewaa@omsc.co.om                                                                   omsc@omzest.com
+OMZC       OMZEST COORDINATING OFFICE                                                  edf@omzest.com,k.sajeesh@omzest.com                                                                  k.sajeesh@omzest.com
+OMZI       OMZEST INVESTMENT DIVISION                                                  satish_finance@omzest.com,dhtambekar@omzest.com                                                      satish_finance@omzest.com
+OSSO       OMAN SERVICES  SUPPLY ORGANIZATION - LLC                                    get@omzest.com,getoman@omantel.net.om,satish_finance@omzest.com                                      get@omzest.com
+OTM        OMAN TEXTILE MILLS CO - LLC                                                 otm@omzest.com,raghavan_otm@omzest.com                                                               otm@omzest.com
+PI         PERSONAL INVESTMENT                                                         satish_finance@omzest.com,dhtambekar@omzest.com                                                      satish_finance@omzest.com
+PPI        PROTEIN PRODUCTS INTERNATIONAL - LLC                                        ppi@omzest.com,kutty_wacom@omzest.com                                                                ppi@omzest.com
+PREA       PRE DEPT - AREEJ ESTATE                                                     pre@omzest.com                                                                                       pre@omzest.com
+PRED       PRE DEPT OF OWNERS                                                          pre@omzest.com                                                                                       pre@omzest.com
+RBP        REEM BATTERIES AND POWER APPLIANCES CO - SAOC                               reembat@omzest.com,vibhor.vishnoi@reembatteries.co.om                                                vibhor.vishnoi@reembatteries.co.om
+RCS        RIYAM COMPUTER SERVICES LLC                                                 rcs@omzest.com,ankit_rcs@omzest.com                                                                  rcs@omzest.com
+RES        RIYAM ENGINEERING  SERVICES - LLC                                           res@omzest.com,fairoos@riyamengg.com                                                                 res@omzest.com
+RITE       RIYAM INVESTMENT  TRADING EST - LLC                                         gm.rite@omzest.com,rite@omzest.com                                                                   fm.rite@omzest.com
+SPOL       AKZO NOBEL OMAN SAOC                                                        sado@omzest.com,mohammed.amanullah@akzonobel.com,shinoj.thomas@akzonobel.com                         mohammed.amanullah@akzonobel.com
+WA         WALEED ASSOCIATES - LLC                                                     wass@omzest.com,naveen_wass@omzest.com                                                               wass@omzest.com
+WACOM      WALEED COMMUNICATIONS CO-WACOM LTD  - LLC                                   wacom@omantel.net.om,kutty_wacom@omzest.com                                                          wacom@omantel.net.om
+WCAS       WALJAT COLLEGES OF APPLIED SCIENCES LLC                                     waljatcm@omantel.net.om,krishnan@waljat.net                                                          waljatcm@omantel.net.om
+WHC        WILAYAT INVESTMENTS COMPANY LLC                                             k.sajeesh@omzest.com                                                                                 k.sajeesh@omzest.com
+WMP        WALJAT MODERN PROJECTS CO - LLC                                             finance-wass@omzest.com                                                                              finance-wass@omzest.com
+WP         WALEED PHARMACY AND STORES LLC                                              wpl@omzest.com,ramnath_wpl@omzest.com                                                                wpl@omzest.com
+ZBD        ZAWAWI BUSINESS DEVELOPMENT COMPANY LLC                                     obd@omzest.com                                                                                       obd@omzest.com
+ZTC        ZAWAWI TRADING COMPANY - LLC                                                finance.ztc@omzest.com,kishor.ztc@omzest.com,nandakishore.ztc@omzest.com,jayesh.ztc@omzest.com       finance.ztc@omzest.com

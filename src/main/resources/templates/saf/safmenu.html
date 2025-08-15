@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            
+            <nav id="sidebar">
+                <menu th:replace="fragments/menu :: menu"></menu>
+            </nav>
+            <!-- Include the menu -->
+
+
+            
+            <!-- right content -->
+            <div id="content">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Submit Flash</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            Alert : By Pressing `Confirm Submit`, you confirm that the figures entered here are checked/verified by Head of Finance/Account of the company.<br><br>Please Note: It is also required that you print the copy of records entered and keep in file with signature for record/audit purpose.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <a id="delete" class="btn btn-danger btn-lg active" onclick="submitFlash(form)"
+                              role="button" aria-pressed="true">Confirm Submit</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <img class="img-responsive" src="images/logo/logo.png" alt="#" />
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user"
+                                                    th:text="${theuserid}"></span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+
+                <!-- dashboard inner -->
+
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>SAF</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The content Start  But Change Heading-->
+
+                        <div class="row column4 graph">
+                            <div class="container-fluid">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        <div class="dash_head">
+                                            <h3><span>Sources And Applications of Funds (SAF)</span></h3>
+                                        </div>
+                                        <div class="task_list_main">
+
+
+
+                                            <form action="#" name="form" method="post">
+                                                <center>
+                                                <div class="col-md-5">
+                                                    <div class="white_shd full margin_bottom_30">
+                                                        <div class="full graph_head">
+                                                            <div class="heading1 margin_0">
+                                                                <h2><label class="col-form-label-sm" for="year">Year:</label>
+                                                                    <select class="form-control-sm" id="year" name="year">
+                                                                        <option th:each="year : ${years}"
+                                                                            th:text="${year}" th:value="${year}"
+                                                                            th:selected="${year} == ${currentYear}">
+                                                                        </option>
+                                                                    </select>
+
+                                                                    
+                                                                    <label class="col-form-label-sm">Month:</label>
+                                                                    <select class="form-control-sm" id="month" name="month" onchange="changeTimeframe(form)">
+                                                                        <option th:each="monthEntry : ${months}" 
+                                                                                th:value="${monthEntry.key}" 
+                                                                                th:text="${monthEntry.value}" 
+                                                                                th:selected="${monthEntry.key} == ${currentMonth}"></option>
+                                                                    </select>
+                                                                    <button type="button" class="btn cur-p btn-primary" onclick="changeTimeframe(form)">Go</button>
+                                                                </h2>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                        <div class="full progress_bar_inner">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="msg_list_main">
+                                                                        <ul class="msg_list">
+                                                                            <li>
+                                                                                <span>
+                                                                                    <span class="name_user">
+                                                                                        <a href="#" onclick="safentry(form);">Add / Modify (Sources And Applications of Funds)</a>
+                                                                                    </span>
+                                                                                </span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <span>
+                                                                                    <span class="name_user">
+                                                                                        <a href="#" onclick="loansFromAndTo(form);">Add / Modify (Loans From/To)</a>
+                                                                                    </span>
+                                                                                </span>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <div th:if="${countnew > 0}">
+                                                                            <strong><span class="form-control-lg">SAF Submitted.</span></strong>
+                                                                        </div>
+                                                                        <div th:unless="${countnew > 0}">
+                                                                            <!--
+                                                                            <Input Type="button" Name=cmdSave Value='Submit' class="btn cur-p btn-primary"  onclick="submitFlash(form)" >                                                                        
+                                                                            -->
+                                                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                                                                                    Submit
+                                                                                  </button>
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </center>
+                                            <script language="javascript">
+                                                   
+                                                //alert(description[5].value);
+                                                
+                                                
+                                                
+                                    
+                                                function safentry(form)
+                                                {
+                                                    form.method="Post";
+                                                    form.action="/listsaf";
+                                                    form.submit();
+                                                }
+
+                                                function loansFromAndTo(form)
+                                                {
+                                                    form.method="Post";
+                                                    form.action="/loansft";
+                                                    form.submit();
+                                                }
+
+                                                function submitFlash(form)
+                                                {
+                                                    form.method="Post";
+                                                    form.action="/submitSaf";
+                                                    form.submit();
+                                                }
+
+                                                function changeTimeframe(form)
+                                                {
+                                                    form.method="Get";
+                                                    form.action="/safmenu";
+                                                    form.submit();
+                                                }
+                                            </script> 
+                                            </form>
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- The content End -->
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <footer th:replace="fragments/footer :: footer"></footer>
+                        </div>
+                    </div>
+                    <!-- end dashboard inner -->
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+
+        <!-- Include the footer 
+        <div th:replace="fragments/footer :: foot"></div>
+        -->
+    </div>
+    </div>
+</body>
+
+</html>

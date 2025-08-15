@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang=en xmlns:th=http://www.thymeleaf.org>
+<head>
+
+    <STYLE>
+         @media print {
+            .page-break {
+                page-break-before: always;
+            }
+        }
+        div.applicant-break {page-break-after:always;}
+        BR.page { page-break-after: always }
+    .border-ALL {
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: solid 1px black !important;
+        border-bottom: solid 1px black !important;
+    }
+	.RepfontStyle2
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:8pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle1
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7.0pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle3
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7.0pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.RepHeaderAnnex
+	{
+		border-width:0;
+		border-style:none;
+		/*background-color:#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#330099;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeaderComp
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: solid 1px black !important;
+        border-bottom: none;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+    .RepHeaderCompNext0
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+    .RepHeaderCompNext1
+	{
+        border-width:1;
+        border-right: none;
+        border-left: solid 1px black !important;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+    .RepHeaderCompNext2
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: none;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.RepHeader3
+	{
+		border-width:0;
+		border-style:none;
+		/*background-color:#EEF7F9;*/
+		font-size:5pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader5
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#EEF7F9;
+		font-size:7pt;
+		font-family:Verdana;
+		font-weight:Bold;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader4
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#EEF7F9;
+		font-size:6pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader
+	{
+		border-width:0;
+		border-style:none;
+		background-color:white; /*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.SubRepHeader
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#BDDDE8;
+		font-size:8pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.cellStyle1
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		font-weight: bold;
+	}
+
+</STYLE>
+    
+
+    <body>
+        <form name="form" >
+            <Center>
+
+            <table class='RepHeader'  border=1  width='80%' cellPadding='1' cellspacing='0' bgColor='white'>
+                <thead>
+                    <tr>
+                        <th align='Center' class='RepHeaderAnnex' colspan=10>OMZEST GROUP COMPANIES</th>
+                    </tr>
+                    <tr>
+                        <th align='Center' class='RepHeaderAnnex' colspan=10><u>INDEX FOR INDIVIDUAL REPORTS OF COMPANIES</u></th>
+                    </tr>
+                </thead>
+                <!-- Outer loop: Iterate over the categories -->
+
+				<tr>
+					<td Align=Center width='8%'>Sr. No.</td>
+					
+					<td Align=left >OGC Name</td>
+					<td Align=Center width='8%'><u>ANNEX</u></td>
+				</tr>
+
+				<!--
+                <tbody th:each="entry, iterStat : ${companyName}">
+					
+                    <tr>
+                        <td Align=Center width='8%' th:text="${iterStat.index+1}"></td>
+                        
+                        <td Align=left th:text="${entry.value[0]}">&nbsp;</td>
+                        <td Align=left th:text="${entry.value[1]}">&nbsp;</td>
+                        <td Align=Center width='8%' th:text="${iterStat.index+1}"><u>ANNEX</u></td>
+                    </tr>
+                </tbody>
+                -->
+				<tbody th:each="entry , iterStat : ${companyName}">
+					<tr>
+						<!-- Check if this is the first entry of a new category -->
+						<tr th:if="${entry.value[2] == 'true'}">
+							<td colspan="3" th:text="${entry.value[1]}"></td> <!-- Display Category Name -->
+						</tr>
+				
+						<!-- Display the company information -->
+						<tr>
+							<td th:text="${entry.value[3]}"></td> <!-- Running counter starting at 1 for each category -->
+							<!--<td th:text="${entry.value[1]}"></td>  Category Name -->
+							<td th:text="${entry.value[0]}"></td> <!-- Company Name -->
+							<td th:text="${iterStat.index + 1}"></td> <!-- Company Name -->
+						</tr>
+					</tr>
+				</tbody>
+<!--
+				<tbody th:each="entry, iterStat : ${companyName}">
+					<tr >
+						
+						<tr th:if="${entry.value[2] == 'true'}">
+							<td colspan="3" th:text="${entry.value[1]}"></td> 
+						</tr>
+				
+						
+						<tr>
+							<td th:text="${iterStat.index + 1}"></td> 
+							<td th:text="${entry.value[1]}"></td> 
+							<td th:text="${entry.value[0]}"></td> 
+						</tr>
+					</tr>
+				</tbody>
+			-->			
+        <!-- Inner loop: Iterate over the items within each category -->
+        
+    
+                <!--
+                <tbody th:each="entry, iterStat : ${companyName}">
+                    <tr>
+                        <td Align=Center width='8%'><u>SR.NO.</u></td>
+                        
+                        <td Align=left th:text="${entry.value[0]}">&nbsp;</td>
+                        <td Align=left th:text="${entry.value[1]}">&nbsp;</td>
+                        <td Align=Center width='8%' th:text="${iterStat.index+1}"><u>ANNEX</u></td>
+                    </tr>
+                </tbody>
+            -->
+               <!--
+                <tr th:each="entry : ${companyName}">
+                    <td th:text="${entry.key}"></td>  
+                    <td th:text="${entry.value.getClass().getName()}"></td>
+                    <td th:text="${entry.value}"></td>
+                    <td th:text="${entry.value[0]}"></td>
+                    <td th:text="${entry.value[1]}"></td>
+                </tr>
+                -->
+            
+            </table>
+
+            
+            <div class='applicant-break'>&nbsp;</div>
+            <Table border="0" width='80%' cellPadding=1 cellspacing=0 bgColor=white>
+                <tbody th:each="entry, iterStat : ${companyMistxnWrappers}">
+                    <tr th:if="${iterStat.index > 0}" class="page-break">
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" >
+                            <table  width="100%" cellPadding=0 cellspacing=0>
+                                <tr >
+									<!--
+                                    <td align="center" colspan="2" class='RepHeaderComp' th:text="${companyName[entry.key].getClass().getName()}"></td>
+									-->
+									<td align="center" colspan="2" class='RepHeaderComp' th:text="${companyName[entry.key][0]}"></td>
+                                </tr>
+                                <tr >
+                                    <td colspan="2" align="right" class='RepHeaderCompNext0' th:text="'Annexx - ' + ${iterStat.index+1}" />
+                                </tr>
+                                <tr >
+                                    <td class='RepHeaderCompNext1' align="left"><br>Flash Report For: June-2024</td>
+                                    <td class='RepHeaderCompNext2' align="right"><br>Amount (RO '000)</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="2" >
+                                        <table border=1 width="100%" cellPadding=1 cellspacing=0>
+                                            <tr class='RepHeader'>
+                                                <Th Align="Center" >MTD<br>Actual<br><span  th:text="${prev_year}"></span></th>
+                                                <Th Align=Center >MTD<br>Budget<br><span  th:text="${cur_year}"></span></th>
+                                                <Th Align=Center >MTD<br>Flash<br><span  th:text="${cur_year}"></span></th>
+                                                <Th Align=Center >Description<br></th>
+                                                <Th Align=Center >YTD<br>Flash<br><span  th:text="${cur_year}"></span></th>
+                                                <Th Align=Center >YTD<br>Budget<br><span  th:text="${cur_year}"></span></th>
+                                                <Th Align=Center >YTD<br>Actual<br><span  th:text="${prev_year}"></span></th>
+                                                <Th Align=Center >YTD<br>Actual<br><span  th:text="${prev_year2}"></span></th>
+                                                <Th Align=Center >YTD<br>Actual<br><span  th:text="${prev_year3}"></span></th>
+                                                <Th Align=Center >YTD<br>Actual<br><span  th:text="${prev_year4}"></span></th>
+                                            </tr>
+                                                
+                                            <tr th:each="mistxn : ${entry.value.mistxns}" Class="RepfontStyle2">
+                                                <td  align="right" th:text="${mistxn.actMtdBalPy1 < 0} ? '(' + ${#numbers.formatDecimal(mistxn.actMtdBalPy1, 0, 2)}  + ')' :  (${mistxn.actMtdBalPy1 == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.actMtdBalPy1, 0, 2)})" ></td>
+                                                <td  align="right" th:text="${mistxn.bgtMtdBal < 0} ? '(' + ${#numbers.formatDecimal(mistxn.bgtMtdBal, 0, 2)}  + ')' :  (${mistxn.bgtMtdBal == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.bgtMtdBal, 0, 2)})" ></td>
+                                                <td  align="right" th:text="${mistxn.actMtdBal < 0} ? '(' + ${#numbers.formatDecimal(mistxn.actMtdBal, 0, 2)}  + ')' :  (${mistxn.actMtdBal == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.actMtdBal, 0, 2)})" ></td>
+                                                <td  th:text="${mistxn.description}"></td>
+                                                <td  align="right" th:text="${mistxn.actYtdBal < 0} ? '(' + ${#numbers.formatDecimal(mistxn.actYtdBal, 0, 2)}  + ')' :  (${mistxn.actYtdBal == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.actYtdBal, 0, 2)})" ></td>
+                                                <td  align="right" th:text="${mistxn.bgtYtdBal < 0} ? '(' + ${#numbers.formatDecimal(mistxn.bgtYtdBal, 0, 2)}  + ')' :  (${mistxn.bgtYtdBal == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.bgtYtdBal, 0, 2)})" ></td>
+                                                <td  align="right" th:text="${mistxn.actYtdBalPy1 < 0} ? '(' + ${#numbers.formatDecimal(mistxn.actYtdBalPy1, 0, 2)}  + ')' :  (${mistxn.actYtdBalPy1 == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.actYtdBalPy1, 0, 2)})" ></td>
+                                                <td  align="right" th:text="${mistxn.actYtdBalPy2 < 0} ? '(' + ${#numbers.formatDecimal(mistxn.actYtdBalPy2, 0, 2)}  + ')' :  (${mistxn.actYtdBalPy2 == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.actYtdBalPy2, 0, 2)})" ></td>
+                                                <td  align="right" th:text="${mistxn.actYtdBalPy3 < 0} ? '(' + ${#numbers.formatDecimal(mistxn.actYtdBalPy3, 0, 2)}  + ')' :  (${mistxn.actYtdBalPy3 == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.actYtdBalPy3, 0, 2)})" ></td>
+                                                <td  align="right" th:text="${mistxn.actYtdBalPy4 < 0} ? '(' + ${#numbers.formatDecimal(mistxn.actYtdBalPy4, 0, 2)}  + ')' :  (${mistxn.actYtdBalPy4 == 0} ? '0.00' : ${#numbers.formatDecimal(mistxn.actYtdBalPy4, 0, 2)})" ></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="10">
+                                                    <strong>Remarks:-</strong> <pre th:text="${companyRemarks[entry.key]}"></pre>
+                                                </td>
+                                            </tr>
+                        
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                </tbody>
+            </table>
+            
+            </Center>
+        </form>
+    </body>    
+</html>

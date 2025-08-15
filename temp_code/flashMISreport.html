@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang=en xmlns:th=http://www.thymeleaf.org>
+<head>
+
+    <STYLE>
+         @media print {
+            .page-break {
+                page-break-before: always;
+            }
+        }
+        div.applicant-break {page-break-after:always;}
+        BR.page { page-break-after: always }
+    .border-ALL {
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: solid 1px black !important;
+        border-bottom: solid 1px black !important;
+    }
+	.RepfontStyle2
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:8pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle1
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7.0pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepfontStyle3
+	{
+		border-width:3;
+		border-style:none;
+		background-color:#FFFFFF;
+		font-size:7.0pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.RepHeaderAnnex
+	{
+		border-width:0;
+		border-style:none;
+		/*background-color:#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#330099;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeaderComp
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: solid 1px black !important;
+        border-bottom: none;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+    .RepHeaderCompNext0
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: solid 1px black !important;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+    .RepHeaderCompNext1
+	{
+        border-width:1;
+        border-right: none;
+        border-left: solid 1px black !important;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+    .RepHeaderCompNext2
+	{
+        border-width:1;
+        border-right: solid 1px black !important;
+        border-left: none;
+        border-top: none ;
+        border-bottom: none ;
+		background-color:#FFFFCA;/*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:black;/*#330099;*/
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.RepHeader3
+	{
+		border-width:0;
+		border-style:none;
+		/*background-color:#EEF7F9;*/
+		font-size:5pt;
+		font-family:Verdana;
+		font-weight:normal;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader5
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#EEF7F9;
+		font-size:7pt;
+		font-family:Verdana;
+		font-weight:Bold;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader4
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#EEF7F9;
+		font-size:6pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.RepHeader
+	{
+		border-width:0;
+		border-style:none;
+		background-color:white; /*#DBECF2;*/
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+
+	.SubRepHeader
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#BDDDE8;
+		font-size:8pt;
+		font-family:Verdana;
+		font-weight:bold;
+		color:#000000;
+		padding-left:5;
+		padding-top:5;
+		padding-right:5;
+		padding-bottom:5;
+	}
+	.cellStyle1
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		font-weight: bold;
+	}
+
+	.negative-value::before {
+    content: "(";
+	}
+	.negative-value::after {
+	    content: ")";
+	}
+	.negative-value {
+	    color: black; /* Optional: Makes negative numbers red */
+	}
+</STYLE>
+    
+
+    <body>
+        <form name="form" >
+            <Center>
+
+            
+           
+				<table border="1" width="50%" cellpadding="1" cellspacing="0">
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>MTD</th>
+							<th>MBDG</th>
+							<th>VAR1</th>
+							<th>VARP</th>
+							<th>LY</th>
+							<th>VAR</th>
+							<th>VARLY</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Iterate over the desccdValues for A5, D5, E6 -->
+						<!--
+						<tr th:each="entry : ${desccdValues.entrySet()}" th:if="${entry.key == 'A5'}">
+							<td th:text="${desccdDescriptions['A5']}">Description</td>
+							<td th:text="${entry.key}">A5</td>
+							<td th:text="${entry.value['MTD']}">0</td>
+							<td th:text="${entry.value['MBDG']}">0</td>
+							<td th:text="${entry.value['VAR1']}">0</td>
+							<td th:text="${entry.value['VARP']}">0</td>
+							<td th:text="${entry.value['LY']}">0</td>
+							<td th:text="${entry.value['VAR']}">0</td>
+							<td th:text="${entry.value['VARLY']}">0</td>
+						</tr>
+
+						<tr th:each="entry : ${desccdValues.entrySet()}"
+							th:if="${entry.key == 'D5'}">
+							<td th:text="${desccdDescriptions['D5']}">Description</td>
+							<td th:text="${entry.key}">D5</td>
+							<td th:text="${entry.value['MTD']}">0</td>
+							<td th:text="${entry.value['MBDG']}">0</td>
+							<td th:text="${entry.value['VAR1']}">0</td>
+							<td th:text="${entry.value['VARP']}">0</td>
+							<td th:text="${entry.value['LY']}">0</td>
+							<td th:text="${entry.value['VAR']}">0</td>
+							<td th:text="${entry.value['VARLY']}">0</td>
+						</tr>
+						<tr th:each="entry : ${desccdValues.entrySet()}"
+							th:if="${entry.key == 'E6'}">
+							<td th:text="${desccdDescriptions['E6']}">Description</td>
+							<td th:text="${entry.key}">E6</td>
+							<td th:text="${entry.value['MTD']}">0</td>
+							<td th:text="${entry.value['MBDG']}">0</td>
+							<td th:text="${entry.value['VAR1']}">0</td>
+							<td th:text="${entry.value['VARP']}">0</td>
+							<td th:text="${entry.value['LY']}">0</td>
+							<td th:text="${entry.value['VAR']}">0</td>
+							<td th:text="${entry.value['VARLY'].toPlainString()}">0</td>
+						</tr>
+						-->	
+						<tr>
+							<td th:text="${desccdDescriptions['A5']}" />
+							<!--<td th:text="${desccdValues['A5']['DESCCD']}">0</td>-->
+							<!--
+							<td th:text="${desccdValues['A5']['MTD']}" />
+							<td th:text="${desccdValues['A5']['MBDG']}" />
+							<td th:text="${desccdValues['A5']['VAR1']}" />
+							<td th:text="${desccdValues['A5']['VARP']}" />
+							<td th:text="${desccdValues['A5']['LY']}" />
+							<td th:text="${desccdValues['A5']['VAR']}" />
+							<td th:text="${desccdValues['A5']['VARLY']}" />
+							-->
+
+							<td th:classappend="${desccdValues['A5']['MTD'] < 0 } ? 'negative-value'" th:text="${#numbers.formatDecimal(desccdValues['A5']['MTD'] * 1 , 1, 0) }"></td>
+							<td th:classappend="${desccdValues['A5']['MBDG'] < 0 } ? 'negative-value'" th:text="${#numbers.formatDecimal(desccdValues['A5']['MBDG'] * 1 , 1, 0) }"></td>
+
+							<td th:classappend="${desccdValues['A5']['VAR1'] < 0 } ? 'negative-value'" th:text="${#numbers.formatDecimal(desccdValues['A5']['VAR1'] * -1 , 1, 0) }"></td>
+
+							<td th:classappend="${desccdValues['A5']['VARP'] < 0 } ? 'negative-value'" th:text="${#numbers.formatDecimal(desccdValues['A5']['VARP'] * -1 , 1, 1) }"></td>
+							<td th:classappend="${desccdValues['A5']['LY'] < 0 } ? 'negative-value'" th:text="${#numbers.formatDecimal(desccdValues['A5']['LY'] * 1 , 1, 0) }"></td>
+							<td th:classappend="${desccdValues['A5']['VAR'] < 0 } ? 'negative-value'" th:text="${#numbers.formatDecimal(desccdValues['A5']['VAR'] * -1 , 1, 0) }"></td>
+							<td th:classappend="${desccdValues['A5']['VARLY'] < 0 } ? 'negative-value'" th:text="${#numbers.formatDecimal(desccdValues['A5']['VARLY'] * -1 , 1, 1) }"></td>
+							
+						
+
+						</tr>
+						<tr>
+							<td th:text="${desccdDescriptions['D5']}" />
+							<td th:text="${desccdValues['D5']['MTD']}" />
+							<td th:text="${desccdValues['D5']['MBDG']}" />
+							<td th:text="${desccdValues['D5']['VAR1']}" />
+							<td th:text="${desccdValues['D5']['VARP']}" />
+							<td th:text="${desccdValues['D5']['LY']}" />
+							<td th:text="${desccdValues['D5']['VAR']}" />
+							<td th:text="${desccdValues['D5']['VARLY']}" />
+						</tr>
+
+						<tr>
+							<td th:text="${desccdDescriptions['E6']}" />
+							<td th:text="${desccdValues['E6']['MTD']}" />
+							<td th:text="${desccdValues['E6']['MBDG']}" />
+							<td th:text="${desccdValues['E6']['VAR1']}" />
+							<td th:text="${desccdValues['E6']['VARP']}" />
+							<td th:text="${desccdValues['E6']['LY']}" />
+							<td th:text="${desccdValues['E6']['VAR']}" />
+							<td th:text="${desccdValues['E6']['VARLY']}" />
+						</tr>
+						
+						
+						<tr>
+							<td><b>Total Revenue</b></td>
+							
+							<td align="right"><strong th:text="${#numbers.formatDecimal(totalMTD,1,0)}"></strong></td>
+							<td align="right"><strong th:text="${#numbers.formatDecimal(totalMBDG,1,0)}"></strong></td>
+							<td align="right"><strong th:text="${#numbers.formatDecimal(totalVAR1,1,0)}"></strong></td>
+							<td align="right"><strong th:text="${#numbers.formatDecimal(totaVARP,1,1)}"></strong></td>
+							<td align="right"><strong th:text="${#numbers.formatDecimal(totalLY,1,0)}"></strong></td>
+							<td align="right"><strong th:text="${#numbers.formatDecimal(totalVAR,1,0)}"></strong></td>
+							<td align="right"><strong th:text="${#numbers.formatDecimal(totalVARLY,1,1)}"></strong></td>
+							
+							<!--
+							<td align="right"><strong th:text="${totalMTD.totalValue}"></strong></td>
+							<td align="right"><strong th:text="${totalMBDG.totalValue}"></strong></td>
+							<td align="right"><strong th:text="${totalVAR1.totalValue}"></strong></td>
+							<td align="right"><strong th:text="${totaVARP.totalValue}"></strong></td>
+							<td align="right"><strong th:text="${totalLY.totalValue}"></strong></td>
+							<td align="right"><strong th:text="${totalVAR.totalValue}"></strong></td>
+							<td align="right"><strong th:text="${totalVARLY.totalValue}"></strong></td>
+							-->
+							<!--
+							<td th:text="${totalMBDG.totalValue}" />
+							<td th:text="${totalVAR1.totalValue}" />
+							<td th:text="${totaVARP.totalValue}" />
+							<td th:text="${totalLY.totalValue}" />
+							<td th:text="${totalVAR.totalValue}" />
+							<td th:text="${totalVARLY.totalValue.toPlainString()}" />
+							-->
+						</tr>
+						<tr>
+							<td th:text="${desccdDescriptions['R5']}">Description</td>
+							<td th:text="${desccdValues['R5']['MTD']}">0</td>
+							<td th:text="${desccdValues['R5']['MBDG']}">0</td>
+							<td th:text="${desccdValues['R5']['VAR1']}">0</td>
+							<td th:text="${desccdValues['R5']['VARP']}">0</td>
+							<td th:text="${desccdValues['R5']['LY']}">0</td>
+							<td th:text="${desccdValues['R5']['VAR']}">0</td>
+							<td th:text="${desccdValues['R5']['VARLY']}">0</td>
+						</tr>
+
+					</tbody>
+				</table>
+				
+				
+            
+				
+				
+				</table>
+					
+					<!-- Initialize a variable totalValue outside the loop -->
+
+
+					
+					<!--
+					<span th:with="totalValue=${0}">
+
+						
+						<span th:each="report1 : ${reportData}" 
+							  th:with="totalValue=${totalValue + (report1.desccd.trim() == 'A5' or report1.desccd.trim() == 'D5' or report1.desccd.trim() == 'E6' ? report1.mtd : 1)}">
+							  <p th:text="${report1.desccd}" /> 	 
+							  <p th:text="${report1.mtd}" />
+						</span>
+					
+					
+						<p>Total MTD for A5, D5, E6: <span th:text="${totalValue}"></span></p>
+					
+					</span>
+					-->
+            </Center>
+        </form>
+    </body>    
+</html>

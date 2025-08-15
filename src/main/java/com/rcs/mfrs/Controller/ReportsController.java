@@ -1,0 +1,727 @@
+package com.rcs.mfrs.Controller;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.security.Principal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mysql.cj.x.protobuf.MysqlxExpect;
+import com.rcs.mfrs.Model.Company;
+import com.rcs.mfrs.Model.Flash_rem;
+import com.rcs.mfrs.Model.Mistxn;
+import com.rcs.mfrs.Repositories.MistxnRepository;
+import com.rcs.mfrs.Services.CompanyService;
+import com.rcs.mfrs.Services.Flash_remService;
+import com.rcs.mfrs.Services.MistxnService;
+import com.rcs.mfrs.Util.CompanyDTO;
+import com.rcs.mfrs.Util.GroupResult;
+import com.rcs.mfrs.Util.MCommon;
+import com.rcs.mfrs.Util.TotalValueHelper;
+
+
+
+@Controller
+public class ReportsController {
+
+    
+    private final MCommon mcomm;
+
+    @Autowired
+    private MistxnService mistxnService;
+
+    @Autowired
+    private CompanyService companyService;
+    
+    @Autowired
+    private Flash_remService flash_remService;
+
+    @Autowired
+    public ReportsController(MCommon mcomm) {
+        this.mcomm = mcomm;
+    }
+    
+    @Autowired
+    private MistxnRepository mistxnRepository;
+    
+    @GetMapping("/reports")
+    public String index(@RequestParam(value = "month", required = false) String month,
+        @RequestParam(value = "year", required = false) String year,
+        String yearvalue,Model model, Principal principal,HttpSession session) {
+       
+        if (month == null) {
+        // Get the current month in two-digit format (e.g., "09" for September)
+        month = String.format("%02d", LocalDate.now().getMonthValue());
+        }
+        
+        if (year == null) {
+            // Get the current month in two-digit format (e.g., "09" for September)
+            year =  String.format("%02d", LocalDate.now().getYear());
+        }
+
+        List<Integer> years = mcomm.getYearsList(10);
+        Map<String, String> months = mcomm.getMonthsList();
+
+        int currentYear = mcomm.getCurrentYear();
+        String currentMonth = mcomm.getCurrentMonth();
+
+        model.addAttribute("years", years);
+        model.addAttribute("months", months);
+
+        model.addAttribute("menu", "");
+        model.addAttribute("theuserid", principal.getName());
+        
+        List<Company> companies = companyService.getAll();
+        // if you want sorted by CATEGORY and then by ccompcode use the following
+        //List<Company> companies = companyService.findAll();
+        
+        List<CompanyDTO> companyDTOs = companies.stream()
+        .map(c -> new CompanyDTO(c.getCcompcode(), c.getCcompname()))
+        .collect(Collectors.toList());
+        
+        model.addAttribute("companies", companyDTOs);
+        
+        //return "index";
+        return "reports/analysis";
+    }
+/*
+    @PostMapping("/flashReport")
+    public String flashReport(@RequestParam List<String> cmbCompanylist,@RequestParam("month") String month,@RequestParam("year") String year,HttpSession session,Model model, Principal principal) {
+       
+        System.out.println("cmbCompanylist count = " + cmbCompanylist.size());
+        if (month == null) {
+            // Get the current month in two-digit format (e.g., "09" for September)
+            month = String.format("%02d", LocalDate.now().getMonthValue());
+        }
+            
+        if (year == null) {
+            // Get the current month in two-digit format (e.g., "09" for September)
+            year =  String.format("%02d", LocalDate.now().getYear());
+            }
+        System.out.println("default month = " + month);
+        System.out.println("default year = " + year);
+        
+        
+        session.setAttribute("month", month);
+        session.setAttribute("year", year);
+
+        model.addAttribute("month", month);
+        model.addAttribute("year", year);
+
+
+
+        System.out.println("Month is " + session.getAttribute("month"));        
+        System.out.println((String) session.getAttribute("month"));
+        System.out.println((String) session.getAttribute("year"));
+        // Usermaster account = new Usermaster();
+        // model.addAttribute("useraccount", account);
+        
+        // This is working for update
+        model.addAttribute("theuserid", principal.getName());
+        model.addAttribute("menu", "Flash");
+        
+       // HttpSession session1 = httpSessionFactory.getObject();
+
+        System.out.println("gblCompanyCode = " +  session.getAttribute("gblCompanyCode") );     
+
+       // List<Mistxn> mistxns = mistxnService.findByCriteria("RCS", "06", "2024");
+       //session.setAttribute("month", value);
+       //session.setAttribute("year", yearvalue);
+
+       // String month = (String) session.getAttribute("month");
+       // String year = (String) session.getAttribute("year");
+        String companyCode = (String) session.getAttribute("gblCompanyCode");
+
+        int numeric_year = Integer.parseInt(year);
+
+        String year_1 = String.valueOf(numeric_year-1);
+
+        Map<String, List<Mistxn>> companyMistxnsMap = new HashMap<>();
+
+        for (String companyCode1 : cmbCompanylist) {
+            List<Mistxn> mistxns = mistxnService.findByCriteria(companyCode1, month, year);
+            companyMistxnsMap.put(companyCode, mistxns);
+        }
+        
+        model.addAttribute("companyMistxnsMap", companyMistxnsMap);
+
+        long countnew = mistxnService.countTransactionsByMonthAndYear(year, month,companyCode);
+       // model.addAttribute("countnew", countnew);
+       // System.out.println("countnew = " + countnew);
+        Object yearObj = session.getAttribute("year");
+        if (yearObj != null) {
+            int yeartodisplay = Integer.parseInt(yearObj.toString());
+            model.addAttribute("prev_year", yeartodisplay - 1);
+            model.addAttribute("prev_year2", yeartodisplay - 2);
+            model.addAttribute("prev_year3", yeartodisplay - 3);
+            model.addAttribute("prev_year4", yeartodisplay - 4);
+        }
+        if (countnew>0){
+            List<Mistxn> mistxns = mistxnService.findByCriteria(companyCode, month, year);
+            //System.out.println("total records fetched " + mistxns.size());
+            MistxnListWrapper mistxnListWrapper = new MistxnListWrapper();
+            mistxnListWrapper.setMistxns(mistxns); // add your Mistxn objects here if necessary
+            model.addAttribute("mistxnListWrapper", mistxnListWrapper);
+
+            Optional<Flash_rem> flash_rems = flash_remService.findByCriteria(companyCode, month, year);
+
+            if (flash_rems.isPresent()) {
+                // Display fields from the single Flash_rem object in the console
+                Flash_rem rem = flash_rems.get();
+                System.out.println(rem.getCcompcode());
+                System.out.println(rem.getCmonth());
+                System.out.println(rem.getCyear());
+                System.out.println(rem.getRemarks());
+                // Add other fields you want to display in the console
+                model.addAttribute("flash_rems",rem);
+
+            } else {
+                System.out.println("No records found.*****************************");
+                model.addAttribute("flash_rems","");
+            }
+
+            
+            System.out.println("is the flash remark emply ? - "  + flash_rems.isEmpty());
+           
+        }
+        return "reports/flashreport";
+    }
+        */
+
+
+/* working part 1  here the LinkedHashMap are created based on the order of @RequestParam String cmbCompanylist */
+/*
+        @PostMapping("/flashReport")
+        public String flashReport(@RequestParam String cmbCompanylist,@RequestParam("month") String month,@RequestParam("year") String year,HttpSession session,Model model, Principal principal) {
+           
+            
+            // Split the company list
+            List<String> companyCodes = Arrays.asList(cmbCompanylist.split(","));
+            
+            // A map to hold company code and its corresponding Mistxn list
+            
+            Map<String, MistxnListWrapper> companyMistxnWrappers = new LinkedHashMap<>();
+            Map<String, String> companyRemarks = new LinkedHashMap<>();
+            Map<String, String> companyName = new LinkedHashMap<>();
+
+            for (String companyCode : companyCodes) {
+                // Fetch the Mistxn list for the company
+                System.out.println("Fetchind data for : " + companyCode );
+                List<Mistxn> mistxns = mistxnService.findByCriteria(companyCode, month, year);
+     
+                MistxnListWrapper mistxnListWrapper = new MistxnListWrapper();
+                
+                mistxnListWrapper.setMistxns(mistxns); // add your Mistxn objects here if necessary
+                
+
+                if (mistxns == null || mistxns.isEmpty()) {
+                    System.out.println("No data found for company: " + companyCode);
+                } else {
+                    System.out.println("Data found for company: " + companyCode + ", Size: " + mistxns.size());
+                }
+                
+                companyMistxnWrappers.put(companyCode, mistxnListWrapper);
+
+                
+                
+                Optional<Flash_rem> flash_rems = flash_remService.findByCriteria(companyCode, month, year);
+                
+                
+                if (flash_rems.isPresent()) {
+                    Flash_rem rem = flash_rems.get();
+                    companyRemarks.put(companyCode, rem.getRemarks() );
+                }
+                else
+                    companyRemarks.put(companyCode, "No remarks available. ");
+
+
+                Optional<Company> optionalCompany =  companyService.getbyCcompcode(companyCode);
+                companyName.put(companyCode, optionalCompany.get().getCcompname() );
+            }
+
+            
+
+            model.addAttribute("companyMistxnWrappers", companyMistxnWrappers);
+            model.addAttribute("companyRemarks", companyRemarks);
+            model.addAttribute("companyName", companyName);
+            
+            if (month == null) {
+                // Get the current month in two-digit format (e.g., "09" for September)
+                month = String.format("%02d", LocalDate.now().getMonthValue());
+            }
+                
+            if (year == null) {
+                // Get the current month in two-digit format (e.g., "09" for September)
+                year =  String.format("%02d", LocalDate.now().getYear());
+                }
+
+            int yeartodisplay = Integer.parseInt(year);
+            model.addAttribute("cur_year", yeartodisplay );
+            model.addAttribute("prev_year", yeartodisplay - 1);
+            model.addAttribute("prev_year2", yeartodisplay - 2);
+            model.addAttribute("prev_year3", yeartodisplay - 3);
+            model.addAttribute("prev_year4", yeartodisplay - 4);
+    
+            return "reports/flashreportmultiple.html";
+        }        
+     */
+
+
+/* working part 2  here the LinkedHashMap are created based on order of CATEGOY and ccompcode */
+
+        @PostMapping("flashMISReportComplete")
+        public String flashMISReportComplete(@RequestParam("month") String month,@RequestParam("year") String year,HttpSession session,Model model, Principal principal) {
+            // Fetch the results
+            List<Object[]> result = mistxnRepository.FlashMISPage1A(year, month);
+            
+            TotalValueHelper totalMTD   = new TotalValueHelper();  // To accumulate total for A5, D5, E6
+            TotalValueHelper totalMBDG  = new TotalValueHelper();  // To accumulate total for A5, D5, E6
+            TotalValueHelper totalVAR1  = new TotalValueHelper();  // To accumulate total for A5, D5, E6
+            TotalValueHelper totaVARP   = new TotalValueHelper();  // To accumulate total for A5, D5, E6
+            TotalValueHelper totalLY    = new TotalValueHelper();  // To accumulate total for A5, D5, E6
+            TotalValueHelper totalVAR   = new TotalValueHelper();  // To accumulate total for A5, D5, E6
+            TotalValueHelper totalVARLY = new TotalValueHelper();  // To accumulate total for A5, D5, E6
+            
+            Map<String, Map<String, ValueWithDecimalAndString>> P1S1desccdValues = new HashMap<>();
+            String[] metrics = { "MTD", "MBDG", "VAR1", "VARP", "LY", "VAR", "VARLY"};
+            
+            for (String desccd : Arrays.asList("A5", "D5", "E6", "R5","E5","K5","M5","CALC1","CALC2","CALC3","CALC4")) {
+            
+                Map<String, ValueWithDecimalAndString> valuesMap = new HashMap<>();
+                for (String metric : metrics) {
+                    valuesMap.put(metric, new ValueWithDecimalAndString(BigDecimal.ZERO));
+                }
+                P1S1desccdValues.put(desccd, valuesMap);
+            }
+        
+               
+            Map<String, String> P1S1desccdDescriptions = new HashMap<>();
+            
+            for (Object[] row : result) {
+                P1S1desccdDescriptions.put((String) row[0], (String) row[1]);
+            
+                String desccd    = (String) row[0];
+                BigDecimal mtd   = (BigDecimal) row[2];  // Assuming MTD is in the third column
+                BigDecimal mbdg  = (BigDecimal) row[3];  // Assuming MBDG is in the fourth column
+                BigDecimal var1  = (BigDecimal) row[4];  // Assuming VAR1 is in the fifth column
+                BigDecimal ly    = (BigDecimal) row[6];  // Assuming LY is in the seventh column
+                BigDecimal var   = (BigDecimal) row[7];  // Assuming VAR is in the eighth column
+                
+                
+                mtd = mtd.setScale(0, RoundingMode.HALF_UP);
+                mbdg = mbdg.setScale(0, RoundingMode.HALF_UP);
+                var1 = var1.setScale(0, RoundingMode.HALF_UP);
+                ly = ly.setScale(0, RoundingMode.HALF_UP);
+                var = var.setScale(0, RoundingMode.HALF_UP);
+                
+                if (desccd != null && (desccd.trim().equals("A5") || desccd.trim().equals("D5") || desccd.trim().equals("E6"))) {
+               
+                    Map<String, ValueWithDecimalAndString> valuesMap = P1S1desccdValues.get(desccd.trim());
+
+                    
+                    
+                    valuesMap.put("MTD",new ValueWithDecimalAndString(mtd));
+                    valuesMap.put("MBDG",new ValueWithDecimalAndString(mbdg));
+                    valuesMap.put("VAR1",new ValueWithDecimalAndString(var1));
+
+                    
+                    if (mbdg.compareTo(BigDecimal.ZERO) != 0) { // Prevent division by zero
+                        BigDecimal result1 = var1.divide(mbdg, 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                    
+                        valuesMap.put("VARP", new ValueWithDecimalAndString(result1));
+                    } else {
+                        valuesMap.put("VARP", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                    }
+                    
+                    valuesMap.put("LY",new ValueWithDecimalAndString(ly));
+                    valuesMap.put("VAR",new ValueWithDecimalAndString(var));
+                    
+
+                    if (ly.compareTo(BigDecimal.ZERO) != 0) { // Prevent division by zero
+                        BigDecimal result1 = var.divide(ly, 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                    
+                        valuesMap.put("VARLY", new ValueWithDecimalAndString(result1));
+                    } else {
+                        valuesMap.put("VARLY", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                    }
+                    
+
+                    totalMTD.addToTotal(mtd);  
+                    totalMBDG.addToTotal(mbdg);  
+                    totalVAR1.addToTotal(var1);  
+                    totalLY.addToTotal(ly);  
+                    totalVAR.addToTotal(var);  
+                    
+                }
+                
+               
+
+                if (desccd != null && (desccd.trim().equals("E5") || desccd.trim().equals("M5") || desccd.trim().equals("K5") || desccd.trim().equals("R5"))) {
+                    //Map<String, ValueWithDecimalAndString>    valuesMap = P1S1desccdValues.get("R5");
+                    Map<String, ValueWithDecimalAndString> valuesMap = P1S1desccdValues.get(desccd.trim());
+                    valuesMap.put("MTD",new ValueWithDecimalAndString(mtd));
+                    valuesMap.put("MBDG",new ValueWithDecimalAndString(mbdg));
+                    valuesMap.put("VAR1",new ValueWithDecimalAndString(var1));
+
+                    if (mbdg.compareTo(BigDecimal.ZERO) != 0) { 
+                        BigDecimal result1 = var1.divide(mbdg, 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                    
+                        valuesMap.put("VARP", new ValueWithDecimalAndString(result1));
+                    } else {
+                        valuesMap.put("VARP", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                    }
+                    valuesMap.put("LY",new ValueWithDecimalAndString(ly));
+                    valuesMap.put("VAR",new ValueWithDecimalAndString(var));
+
+                    if (ly.compareTo(BigDecimal.ZERO) != 0) { // Prevent division by zero
+                        BigDecimal result1 = var.divide(ly, 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                    
+
+                        valuesMap.put("VARLY", new ValueWithDecimalAndString(result1));
+                    } else {
+
+                        valuesMap.put("VARLY", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                    }
+                }
+                
+            }
+            
+            //System.out.println ("descValues K5 MTD 1= " + P1S1desccdValues.get("R5").get("MTD").getValue().multiply(BigDecimal.valueOf(100)));
+
+            //System.out.println ("descValues K5 MTD 2 = " + P1S1desccdValues.get("R5").get("MTD").getValue().multiply(BigDecimal.valueOf(100)).divide(totalMTD.getTotalValue(), 3, RoundingMode.HALF_UP));
+            
+
+            //Map<String, Map<String, ValueWithDecimalAndString>> P1S1desccdValues = new HashMap<>();
+            //P1S1desccdValues.putIfAbsent("CALC2", new HashMap<>());  
+            //P1S1desccdValues.get("CALC2").put("MTD", new ValueWithDecimalAndString(new BigDecimal("123.45")));
+            P1S1desccdDescriptions.put((String) "CALC2", "PBT % on Total Revenue");
+            P1S1desccdValues.get("CALC2").put("MTD", new ValueWithDecimalAndString(P1S1desccdValues.get("R5").get("MTD").getValue().multiply(BigDecimal.valueOf(100)).divide(totalMTD.getTotalValue(), 1, RoundingMode.HALF_UP)));
+            P1S1desccdValues.get("CALC2").put("MBDG", new ValueWithDecimalAndString(P1S1desccdValues.get("R5").get("MBDG").getValue().multiply(BigDecimal.valueOf(100)).divide(totalMBDG.getTotalValue(), 1, RoundingMode.HALF_UP)));
+            P1S1desccdValues.get("CALC2").put("VAR1", new ValueWithDecimalAndString( P1S1desccdValues.get("CALC2").get("MTD").getValue().subtract(P1S1desccdValues.get("CALC2").get("MBDG").getValue())     ));
+            P1S1desccdValues.get("CALC2").put("LY", new ValueWithDecimalAndString(P1S1desccdValues.get("R5").get("LY").getValue().multiply(BigDecimal.valueOf(100)).divide(totalLY.getTotalValue(), 1, RoundingMode.HALF_UP)));
+            P1S1desccdValues.get("CALC2").put("VAR", new ValueWithDecimalAndString( P1S1desccdValues.get("CALC2").get("MTD").getValue().subtract(P1S1desccdValues.get("CALC2").get("LY").getValue())     ));
+
+
+            
+            P1S1desccdDescriptions.put((String) "CALC3", "Cash PBT - Operations");
+            P1S1desccdValues.get("CALC3").put("MTD", new ValueWithDecimalAndString(P1S1desccdValues.get("M5").get("MTD").getValue().subtract(P1S1desccdValues.get("E5").get("MTD").getValue())));
+            P1S1desccdValues.get("CALC3").put("MBDG", new ValueWithDecimalAndString(P1S1desccdValues.get("M5").get("MBDG").getValue().subtract(P1S1desccdValues.get("E5").get("MBDG").getValue())));
+            P1S1desccdValues.get("CALC3").put("VAR1", new ValueWithDecimalAndString(P1S1desccdValues.get("M5").get("VAR1").getValue().subtract(P1S1desccdValues.get("E5").get("VAR1").getValue())));
+
+            if (P1S1desccdValues.get("CALC3").get("MBDG").getValue().compareTo(BigDecimal.ZERO) != 0) { 
+                BigDecimal result1 = P1S1desccdValues.get("CALC3").get("VAR1").getValue().divide(P1S1desccdValues.get("CALC3").get("MBDG").getValue(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                P1S1desccdValues.get("CALC3").put("VARP", new ValueWithDecimalAndString(result1));
+            } else 
+            {
+                P1S1desccdValues.get("CALC3").put("VARP", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                
+            }
+
+            P1S1desccdValues.get("CALC3").put("LY", new ValueWithDecimalAndString(P1S1desccdValues.get("M5").get("LY").getValue().subtract(P1S1desccdValues.get("E5").get("LY").getValue())));
+            P1S1desccdValues.get("CALC3").put("VAR", new ValueWithDecimalAndString(P1S1desccdValues.get("M5").get("VAR").getValue().subtract(P1S1desccdValues.get("E5").get("VAR").getValue())));
+
+            if (P1S1desccdValues.get("CALC3").get("LY").getValue().compareTo(BigDecimal.ZERO) != 0) { 
+                BigDecimal result1 = P1S1desccdValues.get("CALC3").get("VAR").getValue().divide(P1S1desccdValues.get("CALC3").get("LY").getValue(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                P1S1desccdValues.get("CALC3").put("VARLY", new ValueWithDecimalAndString(result1));
+            } else 
+            {
+                P1S1desccdValues.get("CALC3").put("VARLY", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                
+            }
+
+            
+            P1S1desccdDescriptions.put((String) "CALC4", "Cash PBT % on Total Revenue");
+
+
+            if (totalMTD.getTotalValue().compareTo(BigDecimal.ZERO) != 0) { 
+                BigDecimal result1 = P1S1desccdValues.get("CALC3").get("MTD").getValue().divide(totalMTD.getTotalValue(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                P1S1desccdValues.get("CALC4").put("MTD", new ValueWithDecimalAndString(result1));
+            } else 
+            {
+                P1S1desccdValues.get("CALC4").put("MTD", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                
+            }
+
+            if (totalMBDG.getTotalValue().compareTo(BigDecimal.ZERO) != 0) { 
+                BigDecimal result1 = P1S1desccdValues.get("CALC3").get("MBDG").getValue().divide(totalMBDG.getTotalValue(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                P1S1desccdValues.get("CALC4").put("MBDG", new ValueWithDecimalAndString(result1));
+            } else 
+            {
+                P1S1desccdValues.get("CALC4").put("MBDG", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                
+            }
+
+            P1S1desccdValues.get("CALC4").put("VAR1", new ValueWithDecimalAndString(P1S1desccdValues.get("CALC4").get("MTD").getValue().subtract(P1S1desccdValues.get("CALC4").get("MBDG").getValue())));
+            
+            if (totalLY.getTotalValue().compareTo(BigDecimal.ZERO) != 0) { 
+                BigDecimal result1 = P1S1desccdValues.get("CALC3").get("LY").getValue().divide(totalLY.getTotalValue(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                P1S1desccdValues.get("CALC4").put("LY", new ValueWithDecimalAndString(result1));
+            } else 
+            {
+                P1S1desccdValues.get("CALC4").put("LY", new ValueWithDecimalAndString(BigDecimal.ZERO));
+                
+            }
+            P1S1desccdValues.get("CALC4").put("VAR", new ValueWithDecimalAndString(P1S1desccdValues.get("CALC4").get("MTD").getValue().subtract(P1S1desccdValues.get("CALC4").get("LY").getValue())));
+
+            
+
+
+            model.addAttribute("P1S1desccdValues", P1S1desccdValues);
+
+
+            P1S1desccdValues.get("CALC1").put("MTD", new ValueWithDecimalAndString(totalMTD.getTotalValue()));
+            P1S1desccdValues.get("CALC1").put("MBDG", new ValueWithDecimalAndString(totalMBDG.getTotalValue()));
+            P1S1desccdValues.get("CALC1").put("VAR1", new ValueWithDecimalAndString(totalVAR1.getTotalValue()));
+
+
+            //model.addAttribute("totalMTD",     totalMTD);
+            //model.addAttribute("totalMBDG",    totalMBDG);
+            //model.addAttribute("totalVAR1",    totalVAR1);
+
+
+
+            if (totalMBDG.getTotalValue().compareTo(BigDecimal.ZERO) != 0) { // Prevent division by zero
+                BigDecimal result1 = totalVAR1.getTotalValue().divide(totalMBDG.getTotalValue(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                //model.addAttribute("totaVARP",     new ValueWithDecimalAndString(result1));
+                P1S1desccdValues.get("CALC1").put("VARP", new ValueWithDecimalAndString(result1));
+            } else {
+                //model.addAttribute("totaVARP",   0  );
+                P1S1desccdValues.get("CALC1").put("VARP", new ValueWithDecimalAndString(BigDecimal.ZERO));
+
+            }
+
+            //model.addAttribute("totalLY",      totalLY);
+            //model.addAttribute("totalVAR",     totalVAR);
+            P1S1desccdValues.get("CALC1").put("LY", new ValueWithDecimalAndString(totalLY.getTotalValue()));
+            P1S1desccdValues.get("CALC1").put("VAR", new ValueWithDecimalAndString(totalVAR.getTotalValue()));
+
+            if (totalLY.getTotalValue().compareTo(BigDecimal.ZERO) != 0) { // Prevent division by zero
+                BigDecimal result1 = totalVAR.getTotalValue().divide(totalLY.getTotalValue(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)); 
+                //model.addAttribute("totalVARLY",     new ValueWithDecimalAndString(result1));
+                P1S1desccdValues.get("CALC1").put("VARLY", new ValueWithDecimalAndString(result1));
+            } else {
+                //model.addAttribute("totalVARLY",   0  );
+                P1S1desccdValues.get("CALC1").put("VARLY", new ValueWithDecimalAndString(BigDecimal.ZERO));
+            }
+
+
+            model.addAttribute("P1S1desccdDescriptions", P1S1desccdDescriptions);  // Pass descriptions to the view
+            return "reports/flashMISreport.html";
+        }
+
+
+
+        @PostMapping("flashMISReport")
+        public String flashMISReport(@RequestParam("month") String month,@RequestParam("year") String year,HttpSession session,Model model, Principal principal) {
+            GroupResult groupResult = new GroupResult(mistxnRepository); // ✅ Manually passing repository
+            Map<String, Object> page1AResult  = groupResult.getPage1A(month,year);
+
+            Map<String, Object> page1BResult  = groupResult.getPage1B(month,year);
+
+
+            
+            model.addAttribute("P1S1desccdValues", page1AResult.get("P1S1desccdValues"));
+            model.addAttribute("P1S1desccdDescriptions", page1AResult.get("P1S1desccdDescriptions"));
+
+            model.addAttribute("P1S2desccdValues", page1BResult.get("P1S2desccdValues"));
+            model.addAttribute("P1S2desccdDescriptions", page1BResult.get("P1S2desccdDescriptions"));
+
+            
+
+                return "reports/flashMISreport.html";
+        }
+
+        @PostMapping("/flashReport")
+        public String flashReport(@RequestParam String cmbCompanylist,@RequestParam("month") String month,@RequestParam("year") String year,HttpSession session,Model model, Principal principal) {
+           
+            Map<String, MistxnListWrapper> companyMistxnWrappers = new LinkedHashMap<>();
+            Map<String, String> companyRemarks = new LinkedHashMap<>();
+            Map<String, List<String>> companyName = new LinkedHashMap<>();
+            // Split the company list
+            List<String> companyCodes = Arrays.asList(cmbCompanylist.split(","));
+            
+
+            // First, gather all company details
+            for (String companyCode : companyCodes) {
+                Optional<Company> optionalCompany = companyService.getbyCcompcode(companyCode);
+                if (optionalCompany.isPresent()) {
+
+                    Company company = optionalCompany.get();
+                    List<String> companyData = new ArrayList<>();
+                    companyData.add(company.getCcompname());
+                    companyData.add(company.getCATEGORY());  // Add other fields as needed
+                    System.out.println("Adding Company Data: " + companyCode + " -> " + companyData);
+                    //companyDetails.put(companyCode, companyData);
+                    companyName.put(companyCode, companyData );
+                }
+            }
+            // Now sort the map entries based on CATEGORY and ccompcode
+            List<Map.Entry<String, List<String>>> sortedEntries = new ArrayList<>(companyName.entrySet());
+            Collections.sort(sortedEntries, new Comparator<Map.Entry<String, List<String>>>() {
+                @Override
+                public int compare(Map.Entry<String, List<String>> entry1, Map.Entry<String, List<String>> entry2) {
+                    // Get CATEGORY from the List<String>
+                    String category1 = entry1.getValue().get(1); // Assuming index 1 is CATEGORY
+                    String category2 = entry2.getValue().get(1); // Assuming index 1 is CATEGORY
+
+                    // Compare first by CATEGORY
+                    int categoryCompare = category1.compareTo(category2);
+
+                    // If categories are equal, compare by company code (key)
+                    if (categoryCompare == 0) {
+                        return entry1.getKey().compareTo(entry2.getKey()); // Compare by companyCode
+                    }
+
+                    return categoryCompare; // Return comparison result of CATEGORY
+                }
+            });
+
+            String previousCategory = null; // To track the previous category
+int categoryCounter = 0; // Counter for entries in the current category
+
+for (Map.Entry<String, List<String>> entry : sortedEntries) {
+    String currentCategory = entry.getValue().get(1); // Get the CATEGORY from the List<String>
+
+    // Check if this entry is the first in its category
+    if (!currentCategory.equals(previousCategory)) {
+        categoryCounter = 1; // Reset the counter for the new category
+        entry.getValue().add("true"); // First entry in this category
+        previousCategory = currentCategory; // Update the previous category for the next loop
+    } else {
+        categoryCounter++; // Increment the counter for subsequent entries
+        entry.getValue().add("false"); // Not the first entry in this category
+    }
+
+    entry.getValue().add(String.valueOf(categoryCounter)); // Add the counter value to the list
+}
+
+
+            // Create a new LinkedHashMap to maintain the sorted order with the flags
+            Map<String, List<String>> sortedCompanyName = new LinkedHashMap<>();
+            for (Map.Entry<String, List<String>> entry : sortedEntries) {
+                sortedCompanyName.put(entry.getKey(), entry.getValue()); // Add sorted and flagged entries
+            }
+
+        
+
+            // A map to hold company code and its corresponding Mistxn list
+            /*
+
+            Map<String, Company> companyDetails = new TreeMap<>(new Comparator<String>() {
+                @Override
+                public int compare(String companyCode1, String companyCode2) {
+                    Company info1 = companyDetails.get(companyCode1);
+                    Company info2 = companyDetails.get(companyCode2);
+    
+                    // Compare first by service
+                    int serviceCompare = info1.getCATEGORY().compareTo(info2.getCATEGORY());
+    
+                    // If services are equal, compare by ccompcode
+                    if (serviceCompare == 0) {
+                        return info1.getCcompcode().compareTo(info2.getCcompcode());
+                    }
+    
+                    // Otherwise, return the comparison result of service
+                    return serviceCompare;
+                }
+            });
+
+            
+ 
+            for (String companyCode : companyCodes) {
+                Optional<Company> optionalCompany =  companyService.getbyCcompcode(companyCode);
+
+                if (optionalCompany.isPresent()) {
+                    Company company = optionalCompany.get();
+                    List<String> companyData = new ArrayList<>();
+                    companyData.add(company.getCcompname());
+                    companyData.add(company.getCATEGORY());  // Add other fields as needed
+                
+                    System.out.println("Adding Company Data: " + companyCode + " -> " + companyData);
+                    //companyDetails.put(companyCode, companyData);
+                    companyName.put(companyCode, companyData );
+                }
+               
+            }
+
+*/
+            for (Map.Entry<String, List<String>> entry : sortedCompanyName.entrySet()) {
+                String companyCode = entry.getKey();  // Get the key (company code)
+                
+                System.out.println(" iteration companyCode" + companyCode);
+                List<Mistxn> mistxns = mistxnService.findByCriteria(companyCode, month, year);
+     
+                MistxnListWrapper mistxnListWrapper = new MistxnListWrapper();
+                
+                mistxnListWrapper.setMistxns(mistxns); // add your Mistxn objects here if necessary
+                
+
+                if (mistxns == null || mistxns.isEmpty()) {
+                    System.out.println("No data found for company: " + companyCode);
+                } else {
+                    System.out.println("Data found for company: " + companyCode + ", Size: " + mistxns.size());
+                }
+                
+                companyMistxnWrappers.put(companyCode, mistxnListWrapper);
+
+                
+                
+                Optional<Flash_rem> flash_rems = flash_remService.findByCriteria(companyCode, month, year);
+                
+                
+                if (flash_rems.isPresent()) {
+                    Flash_rem rem = flash_rems.get();
+                    companyRemarks.put(companyCode, rem.getRemarks() );
+                }
+                else
+                    companyRemarks.put(companyCode, "No remarks available. ");            
+            }
+
+            
+
+
+
+            model.addAttribute("companyMistxnWrappers", companyMistxnWrappers);
+            model.addAttribute("companyRemarks", companyRemarks);
+            model.addAttribute("companyName", sortedCompanyName);
+            
+            if (month == null) {
+                // Get the current month in two-digit format (e.g., "09" for September)
+                month = String.format("%02d", LocalDate.now().getMonthValue());
+            }
+                
+            if (year == null) {
+                // Get the current month in two-digit format (e.g., "09" for September)
+                year =  String.format("%02d", LocalDate.now().getYear());
+                }
+
+            int yeartodisplay = Integer.parseInt(year);
+            model.addAttribute("cur_year", yeartodisplay );
+            model.addAttribute("prev_year", yeartodisplay - 1);
+            model.addAttribute("prev_year2", yeartodisplay - 2);
+            model.addAttribute("prev_year3", yeartodisplay - 3);
+            model.addAttribute("prev_year4", yeartodisplay - 4);
+    
+            return "reports/flashreportmultiple.html";
+        }        
+     
+}
+     

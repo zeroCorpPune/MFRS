@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang=en xmlns:th=http://www.thymeleaf.org>
+<head>
+
+    <STYLE>
+        BR.page { page-break-after: always }
+        .RepfontStyle2
+        {
+            border-width:3;
+            border-style:none;
+            background-color:#FFFFFF;
+            font-size:8pt;
+            font-family:Verdana;
+            font-weight:normal;
+            color:#000000;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+    
+        .RepfontStyle
+        {
+            border-width:3;
+            border-style:none;
+            background-color:#FFFFFF;
+            font-size:7pt;
+            font-family:Verdana;
+            font-weight:normal;
+            color:#000000;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+    
+        .RepfontStyle1
+        {
+            border-width:3;
+            border-style:none;
+            background-color:#FFFFFF;
+            font-size:7.0pt;
+            font-family:Verdana;
+            font-weight:bold;
+            color:#000000;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+    
+        .RepfontStyle3
+        {
+            border-width:3;
+            border-style:none;
+            background-color:#FFFFFF;
+            font-size:7.0pt;
+            font-family:Verdana;
+            font-weight:normal;
+            color:#000000;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+    
+        .RepHeaderComp
+        {
+            border-width:0;
+            border-style:none;
+            background-color:#DBECF2;
+            font-size:9pt;
+            font-family:Verdana;
+            font-weight:bold;
+            color:#330099;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+        .RepHeader3
+        {
+            border-width:0;
+            border-style:none;
+            background-color:#EEF7F9;
+            font-size:5pt;
+            font-family:Verdana;
+            font-weight:normal;
+            color:#000000;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+    
+        .RepHeader5
+        {
+            border-width:0;
+            border-style:none;
+            background-color:#EEF7F9;
+            font-size:7pt;
+            font-family:Verdana;
+            font-weight:Bold;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+    
+        .RepHeader4
+        {
+            border-width:0;
+            border-style:none;
+            background-color:#EEF7F9;
+            font-size:6pt;
+            font-family:Verdana;
+            font-weight:bold;
+            color:#000000;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+    
+        .RepHeader
+        {
+            border-width:0;
+            border-style:none;
+            background-color:#DBECF2;
+            font-size:9pt;
+            font-family:Verdana;
+            font-weight:bold;
+            color:#000000;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+    
+        .SubRepHeader
+        {
+            border-width:0;
+            border-style:none;
+            background-color:#BDDDE8;
+            font-size:8pt;
+            font-family:Verdana;
+            font-weight:bold;
+            color:#000000;
+            padding-left:5;
+            padding-top:5;
+            padding-right:5;
+            padding-bottom:5;
+        }
+        .cellStyle1
+        {
+            background-color:#f9fddf;
+            font-family: Verdana;
+            font-size: 9pt;
+            color:#000000;
+            font-weight: bold;
+        }
+    
+    </STYLE>
+    <body>
+        <form name="form" th:object="${mistxnListWrapper}" >
+        <Table border=1  width='100%' cellPadding=0 cellspacing=0 bgColor=#aaaaaa>
+            <Tr>
+                <Td align='Center' class='RepHeader' ><img class="img-responsive" width="50" src="images/logo/logo_icon.png" alt="#" /></Td>
+                <Td align='Center' class='RepHeaderComp' colspan=8>CompanyName</Td>
+                
+            </Tr>
+            <Tr>
+                <Td align='Center' class='RepHeader' >Flash Report For:&nbsp;<span  th:text="${month}"></span> - <span  th:text="${year}"></span></Td>
+            	<Td Align=Right COlspan=2 class='RepHeader'> 	Amount (RO '000)</Td>
+            </Tr>
+    
+            <Tr>
+                <Td Align=center valign=top Colspan=3>
+                    <Table class='RepHeader' Border=1 Cellspacing=0 Cellpadding=0 Width='100%'>
+                        <tr>
+                            <Td Align="Center" >MTD<br>Actual<br><span  th:text="${prev_year}"></span></td>
+                            <Td Align=Center >MTD<br>Budget<br><span  th:text="${cur_year}"></span></td>
+                            <Td Align=Center >MTD<br>Flash<br><span  th:text="${cur_year}"></span></td>
+                            <Td Align=Center >Description<br></td>
+                            <Td Align=Center >YTD<br>Flash<br><span  th:text="${cur_year}"></span></td>
+                            <Td Align=Center >YTD<br>Budget<br><span  th:text="${cur_year}"></span></td>
+                            <Td Align=Center >YTD<br>Actual<br><span  th:text="${prev_year}"></span></td>
+                            <Td Align=Center >YTD<br>Actual<br><span  th:text="${prev_year2}"></span></td>
+                            <Td Align=Center >YTD<br>Actual<br><span  th:text="${prev_year3}"></span></td>
+                            <Td Align=Center >YTD<br>Actual<br><span  th:text="${prev_year4}"></span></td>
+                        </tr>
+
+                        
+                        <tr th:each="mistxn, iter : ${mistxnListWrapper.mistxns}"  th:class="${mistxn.boldyn == 'Y' ? 'RepfontStyle1' : 'RepfontStyle2'}"  >
+                            <td th:text="${mistxn.actMtdBalPy1}" />
+                            <td th:text="${mistxn.bgtMtdBal}" />
+                            <td th:text="${mistxn.actMtdBal}" />
+                            <td th:text="${mistxn.description}" />
+                            <td th:text="${mistxn.actYtdBal}" />
+                            <td th:text="${mistxn.bgtYtdBal}" />
+                            <td th:text="${mistxn.actYtdBalPy1}" />
+                            <td th:text="${mistxn.actYtdBalPy2}" />
+                            <td th:text="${mistxn.actYtdBalPy3}" />
+                            <td th:text="${mistxn.actYtdBalPy4}" />
+                        </tr>
+                        <tr th:each="var_rem : ${flash_rems}" class="RepfontStyle1" >
+                            <td colspan="10">
+                                <pre th:text="${var_rem.remarks}"/>
+                            </td>
+                            <!--
+                            <td colspan="10" th:text="${var_rem.remarks}" />
+                            -->
+                        </tr>
+                        
+                    </Table>
+                </Td>
+            </Tr>
+        </Table>
+        </form>
+    </body>    
+</html>

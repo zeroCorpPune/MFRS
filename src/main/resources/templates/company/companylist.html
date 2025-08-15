@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <nav id="sidebar">
+                <menu th:replace="fragments/menu :: menu"></menu>
+            </nav>
+            <!-- Include the menu -->
+
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <img class="img-responsive" src="images/logo/logo.png" alt="#" />
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><span class="name_user"
+                                                    th:text="${theuserid}"></span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+
+                <!-- dashboard inner -->
+
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>Company Listing </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- The content Start  But Change Heading-->
+
+                        <div class="row column4 graph">
+                            <div class="container-fluid">
+                                <div class="dash_blog">
+                                    <div class="dash_blog_inner">
+                                        <div class="task_list_main">
+
+                                            <form name="form" >
+                                            <table border="1" width="50%" cellpadding="2" cellspacing="1">
+                                                <th>Code</th>
+                                                <th>OGC Name</th>
+                                                <th>Operation</th>
+                                                <div class="posts_class" th:each="var_company : ${companylisting}">
+                                                  <tr>
+                                                    <td th:text="${var_company.ccompcode}" />
+                                                    <td th:text="${var_company.ccompname}" />
+                                                    <!--<td th:text="${var_company.useflash}" />-->
+                                                    <!--
+                                                    <td><a th:href="@{'/editcompany/'} + ${var_company.ccompcode}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+                                                    -->
+                                                    <td>
+                                                    
+                                                    <a th:href="'javascript:fillcompany(form,\'' + ${var_company.ccompcode} + '\')'">Edit</a>
+                                                    </td>
+                                                    <!--
+                                                    <td>
+                                                      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                                                        Delete
+                                                      </button>
+                                                    </td>
+                                                    -->
+                                                  </tr>
+                                                </div>
+                                              </table>
+                                            
+                                              <input type="hidden" name="ccompcode" id="ccompcode">
+                                              
+                                                <script language="javascript">
+                                              
+                                                  function fillcompany(form, thecode)
+                                                  {
+                                                    form.ccompcode.value=thecode;
+                                                    form.action="/company";
+                                                    form.method="post";
+                                                    form.submit();
+                                                  }
+                                                  function AddNewCompany(form)
+                                                  {
+                                                   
+                                                    //form.compcode.value="";
+                                                    form.action="/company/add";
+                                                    form.method="post";
+                                                    form.submit();
+                                                    
+                                                  }
+                                                </script>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- The content End -->
+                    <div class="container-fluid">
+                        <div class="footer">
+                            <footer th:replace="fragments/footer :: footer"></footer>
+                        </div>
+                    </div>
+                    <!-- end dashboard inner -->
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+
+        <!-- Include the footer 
+        <div th:replace="fragments/footer :: foot"></div>
+        -->
+    </div>
+    </div>
+</body>
+
+</html>

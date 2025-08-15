@@ -1,0 +1,542 @@
+	A {font-family:Verdana;font-size:8pt;text-decoration:none;color:#009f5c;font-weight:normal;}
+	A:LINK {color:#040796;}
+	A:VISITED {color:#010796;}
+	A:hover{text-decoration:none;text-decoration:none;color:#FF0000}
+	BR.page { page-break-after: always }
+	.vis1 
+	{ 
+		visibility:hidden 
+	}
+	.vis2 
+	{ 
+		visibility:visible 
+	}
+	.fontStyle
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#dfdebb;
+		font-size:9pt;
+		font-family:Verdana;
+		font-weight:Bold;
+		color:#000000;
+		padding-left:0;
+		padding-top:0;
+		padding-right:0;
+		padding-bottom:0;
+	}
+	.fontStyle1
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#dfdebb;
+		font-size:7.5pt;
+		font-family:Verdana;
+		font-weight:Bold;
+		color:#000000;
+		padding-left:0;
+		padding-top:0;
+		padding-right:0;
+		padding-bottom:0;
+	}
+	.spanStyleRep
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#cd853f;
+		padding-left:1;
+		padding-top:5;
+		padding-right:1;
+		padding-bottom:5;
+	}
+	.spanStyle
+	{
+		border-width:0;
+		border-style:none;
+		background-color:#cd853f;
+		padding-left:1;
+		padding-top:1;
+		padding-right:1;
+		padding-bottom:1;
+	}
+	.headerStyle1
+	{
+		font-family: Verdana;
+		font-size: 9pt;
+		background:#f9fddf;
+		color:#A8C0A0f;
+		font-weight: bold;
+	}
+	.headerStyle2
+	{
+		font-family: Verdana;
+		font-size: 9pt;
+		background:#cd853f;
+		color:#f9fddf;
+		font-weight: bold;
+	}
+	.headerStyle3
+	{
+		font-family: Verdana;
+		font-size: 8pt;
+		background:#f9fddf;
+		color:#A8C0A0f;
+		font-weight: bold;
+	}
+
+	.headerStyle4
+	{
+		font-family: Verdana;
+		font-size: 8pt;
+		background:#CEDBCC;
+		color:#A8C0A0f;
+		font-weight: bold;
+		padding-left:0;
+		padding-top:0;
+		padding-right:0;
+		padding-bottom:0;
+
+	}
+
+	.cellStyle44
+	{
+		font-family: Verdana;
+		font-size: 10pt;
+		color:#000000;
+		text-align:Left;
+	}
+
+	.cellStyle
+	{
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		text-align:Left;
+		font-weight: bold;
+	}
+	.cellStyle1
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		font-weight: bold;
+	}
+
+	.cellStyleRep
+	{
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		text-align:Left;
+		font-weight: normal;
+	}
+	.cellStyle1Rep
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		font-weight: normal;
+	}
+	.cellStyle2Rep
+	{
+		background-color:#dfdebb;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		font-weight: normal;
+	}
+	.cellStyle11
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 8pt;
+		color:#000000;
+		font-weight: normal;
+	}
+
+	.cellStyleF
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:right;
+		font-weight: normal;
+	}
+
+	.cellStyleF1
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:left;
+		font-weight: normal;
+	}
+
+	.cellStyleF1CommentsEntry
+	{
+		background-color:#f9fddf;
+		font-family: courier new;
+		font-size: 8pt;
+		color:#000000;
+		text-align:left;
+		font-weight: normal;
+	}
+	.cellStyleFBLink
+	{
+		background-color:white;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#3333FF;
+		text-align:left;
+		font-weight: Bold;
+	}
+
+	.cellStyleFB
+	{
+		background-color:white;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:left;
+		font-weight: Bold;
+	}
+
+	.cellStyleFBc
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:center;
+		font-weight: Bold;
+	}
+
+	.cellStyleFBn
+	{
+		background-color:#FF9900;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:right;
+		font-weight: Normal;
+	}
+
+	.cellStyleFBn0
+	{
+		background-color:#FFCC33;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:right;
+		font-weight: Normal;
+	}
+
+	.cellStyleFBn1
+	{
+		background-color:#FF0066;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:right;
+		font-weight: Normal;
+	}
+
+
+	.cellStyleFBn2
+	{
+		background-color:#CCCCFF;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:right;
+		font-weight: Normal;
+	}
+
+
+	.cellStyleFBn3
+	{
+		background-color:Green;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:right;
+		font-weight: Normal;
+	}
+
+
+	
+	
+	
+	
+	.cellStyleFBL
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 7.5pt;
+		color:#000000;
+		text-align:left;
+		font-weight: Bold;
+	}
+
+	.cellStyle1111
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 12pt;
+		color:#000000;
+		font-weight: normal;
+	}
+	.cellStyle111
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 8pt;
+		color:red;
+		font-weight: bold;
+	}
+	.cellStyle2
+	{
+		background-color:#dfdebb;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		text-align:left;
+		font-weight: bold;
+	}
+	.cellStyle22
+	{
+		background-color:#dfdebb;
+		font-family: Verdana;
+		font-size: 8pt;
+		color:#000000;
+		font-weight: normal;
+	}
+	.cellStyle2222
+	{
+		background-color:#dfdebb;
+		font-family: Verdana;
+		font-size: 12pt;
+		color:#000000;
+		font-weight: normal;
+	}
+	.cellStyle3
+	{
+		background-color:#dfdebb;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		font-weight: bold;
+	}
+
+
+	.buttonStyleMenu
+	{
+		background-color:#008080;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#f9fddf;
+		text-align:Center;
+		font-weight:bold;
+	}
+
+	.buttonStyleMenuAccept
+	{
+		background-color:#FF9900;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		text-align:Center;
+		font-weight:bold;
+	}
+
+	.buttonStyleMenuReject
+	{
+		background-color:#DE5454;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		text-align:Center;
+		font-weight:bold;
+	}
+
+	.buttonStyleMenuRejectApproved
+	{
+		background-color:#FF0000;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#FFFF00;
+		text-align:Center;
+		font-weight:bold;
+	}
+	.buttonStyleMenu2
+	{
+		background-color:#CC6600;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#f9fddf;
+		text-align:Center;
+		font-weight:bold;
+	}
+
+	.buttonStyleMenu1
+	{
+		
+		font-family: Verdana;
+		font-size: 13pt;
+		color:black;
+		text-align:Center;
+		font-weight:bold;
+	}
+
+	.buttonStyle
+	{
+		background-color:#cd853f;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#f9fddf;
+		text-align:Center;
+		font-weight:bold;
+	}
+
+	.buttonStyle1
+	{
+		background-color:#D3DFE7;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#cd853f;
+		text-align:Center;
+		font-weight:bold;
+	}
+
+	.textStyle
+	{
+		background-color:#f9fddf;
+		font-size:9pt;
+		font-family:verdana;
+		font-weight:bold;
+		color:#000000;
+	}
+
+	.textStyle1
+	{
+		background-color:#f9fddf;
+		font-size:7.5pt;
+		font-family:verdana;
+		font-weight:bold;
+		color:#000000;
+	}
+
+	.DistextStyle
+	{
+		background-color:#E0E0E0;
+		font-size:9pt;
+		font-family:verdana;
+		font-weight:bold;
+		color:#000000;
+	}
+
+
+	.textStyle1
+	{
+		background-color:#f9fddf;
+		font-size:9pt;
+		font-family:verdana;
+		font-weight:bold;
+		color:#000000;
+		text-align:left
+	}
+
+	.textStyle1A
+	{
+		background-color:#f9fddf;
+		font-size:9pt;
+		font-family:verdana;
+		font-weight:bold;
+		color:#000000;
+		text-align:Center
+	}
+
+	.textStyle1AB
+	{
+		background-color:#f9fddf;
+		font-size:7.5pt;
+		font-family:verdana;
+		font-weight:bold;
+		color:#000000;
+		text-align:Center;
+		text-decoration:underline;
+	}
+
+	.CopyRightStyle
+	{
+		font-size:6pt;
+		font-family:verdana;
+		font-weight:bold;
+		color:#000000;
+	}
+	.cellStyle4
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+	
+		font-weight: bold;
+	}
+
+		.DistextStyle1
+	{
+		background-color:#CCFFFF;
+		font-size:9pt;
+		font-family:verdana;
+		font-weight:bold;
+		color:#000000;
+	}
+
+	.cellStyleFBnBSBudget
+	{
+		background-color:#FF9900;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		text-align:right;
+		font-weight: Normal;
+	}
+	.cellStyleFBSBudget
+	{
+		background-color:#f9fddf;
+		font-family: Verdana;
+		font-size: 9pt;
+		color:#000000;
+		text-align:right;
+		font-weight: normal;
+	}
+
+	.textStyleBSBudget
+	{
+		background-color:#f9fddf;
+		font-size:9pt;
+		font-family:verdana;
+		font-weight:normal;
+		color:#000000;
+	}
+
+
+.ui-widget-content {
+	border: 1px solid #aaaaaa;
+	background-color:#f9fddf;
+	font-size:9pt;
+	font-family:verdana;
+	font-weight:bold;
+	color:#000000;
+	list-style: none;
+	margin: 0;
+	padding: 2;
+	width: 50%;
+}
+
+

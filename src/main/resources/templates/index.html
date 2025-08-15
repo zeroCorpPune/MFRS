@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html  lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<body class="sub_page">
+  <form name="form" >
+  <script language="javascript">
+
+    function fillcompany(form, thecode)
+    {
+      form.ccompcode.value=thecode;
+      form.action="/company/editwithformfield";
+      form.method="post";
+      form.submit();
+    }
+    function AddNewCompany(form)
+    {
+     
+      //form.compcode.value="";
+      form.action="/company/add";
+      form.method="post";
+      form.submit();
+      
+    }
+  </script>
+<!-- Modal start -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Danger</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!--
+        <a id="delete" th:href="@{'/posts/' + ${post.id} + '/delete'}" class="btn btn-danger btn-lg active"
+            role="button" aria-pressed="true">Delete</a>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal End -->
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container">
+
+      <span sec:authorize="hasRole('ROLE_ADMIN')">
+        <a href="/list">List</a>
+      </span>
+      <span sec:authorize="isAuthenticated()">
+        <a href="/mistxn/listflash">Flash</a>
+      </span>
+      <span sec:authorize="isAuthenticated()">
+        <a href="/logout">Log out</a>
+      </span>
+<!--
+      <div class="welcomemessage">
+        welcome <p th:text="${theuserid}"></p>
+      </div>
+-->
+      <table border="1" cellpadding="1" cellspacing="0">
+        <div class="posts_class" th:each="var_users : ${userlistingAll}">
+          <tr>
+            <td th:text="${var_users.cuserid}" />
+            <td th:text="${var_users.userrole}" />
+            <td th:text="${var_users.canmodify}" />
+          </tr>
+        </div>
+      </table>
+      <table border="1">
+        <tr>
+          <td>Add</td>
+          <td>Modify</td>
+          <td>Delete</td>
+        </tr>
+        <tr>
+          <td th:text="${canAdd}" />
+            <td th:text="${canModify}" />
+            <td th:text="${canDelete}" />
+        </tr> 
+      </table>
+      <!--
+      can modify ?? <p th:each="status:${selecteduserlisting}" th:text=${status.canmodify}  />
+      -->
+      
+
+      <select ID="cmb2">
+        <option th:each="status:${selecteduserlisting}" th:text=${status.userrole} th:value="${status.cuserid}" />
+      </select>
+
+      <table border="1" cellpadding="1" cellspacing="0">
+        <th>Code</th>
+        <th>OGC Name</th>
+        <th>Use Flash</th>
+        <div class="posts_class" th:each="var_company : ${companylisting}">
+          <tr>
+            <td th:text="${var_company.ccompcode}" />
+            <td th:text="${var_company.ccompname}" />
+            <!--<td th:text="${var_company.useflash}" />-->
+            <!--
+            <td><a th:href="@{'/editcompany/'} + ${var_company.ccompcode}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+            -->
+            <td>
+            
+            <a th:href="'javascript:fillcompany(form,\'' + ${var_company.ccompcode} + '\')'">Edit</a>
+            </td>
+            <td>
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </div>
+      </table>
+
+      <span sec:authorize="isAuthenticated()" th:if="${canAdd == 'Y'}">
+            <a href="#" onclick="return AddNewCompany(form);">Add Company</a>
+            <!--
+            <a class="nav-link" th:href="@{/company/add}">Add Company</a>
+            -->
+      </span>
+      <input type="hidden" name="ccompcode" id="ccompcode">
+    </div>
+  </section>
+  <select>
+    <option th:each="company : ${companies}" 
+            th:value="${company.ccompcode}" 
+            th:text="${company.ccompname}">
+    </option>
+</select>
+<p th:text="${companies}"></p>
+  
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  let companies = JSON.parse(/*[[${companiesJson}]]*/ '[]');
+  console.log(companies);
+  /*]]>*/
+</script>
+    
+</form>
+</body>
+
+</html>
