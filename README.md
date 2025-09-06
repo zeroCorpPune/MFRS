@@ -147,5 +147,3 @@ To run with the Spring Boot plugin (may require adjusting `tomcat` scope):
 - Add an automated CI pipeline to run `mvnw.cmd test` and build artifacts.
 - Add startup instructions to include environment-specific profiles (Spring profiles) for dev/prod.
 
-- Produce a detailed README describing technical specs, structure and how it works: Done.
-
