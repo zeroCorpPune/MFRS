@@ -1,19 +1,3 @@
-# MFRS (Monthly Financial Reporting System)
-
-## Task receipt & plan
-I will add a professional README that documents the project's technical specification, architecture, configuration, build/run/deploy instructions, and troubleshooting notes.
-
-Checklist
-- [x] Project overview and purpose
-- [x] Precise technical specification (JDK, Spring Boot, packaging, dependencies)
-- [x] Code & package layout
-- [x] Configuration (application.properties) and DB details
-- [x] How it runs (local, packaged WAR, deploy to Tomcat)
-- [x] Reporting and templating components (JasperReports, Thymeleaf)
-- [x] Common tasks, troubleshooting and next steps
-
----
-
 ## Overview
 MFRS is a Spring Boot based web application for generating monthly financial reports (Jasper reports + charts). It uses Thymeleaf for server-side pages and Spring Security for authentication/authorization. The project is packaged as a WAR and is designed to be deployed to a servlet container (e.g., Apache Tomcat). It also contains static client assets and generated report templates.
 
@@ -162,13 +146,4 @@ To run with the Spring Boot plugin (may require adjusting `tomcat` scope):
 - Externalize secrets and configuration (example: use `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, `SPRING_DATASOURCE_PASSWORD` env vars).
 - Add an automated CI pipeline to run `mvnw.cmd test` and build artifacts.
 - Add startup instructions to include environment-specific profiles (Spring profiles) for dev/prod.
-
----
-
-If you want, I can:
-- Add a short `RUNNING.md` with quick run/deploy commands specific to your environment.
-- Create a simple Dockerfile to run the application in a container (requires enabling embedded Tomcat or using a base Tomcat image and deploying the WAR).
-
-Requirements coverage
-- Produce a detailed README describing technical specs, structure and how it works: Done.
 
